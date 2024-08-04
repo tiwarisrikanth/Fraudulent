@@ -112,7 +112,7 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
                               onPressed: () {
                                 // Handle accept call
                                 Navigator.push(context,
-                                    FadePageRoute(page: CAllingScreen()));
+                                    FadePageRoute(page: CallingScreen()));
                               },
                             ),
                           ],
@@ -205,7 +205,7 @@ class CallButton extends StatelessWidget {
         color: Colors.white,
       ),
       style: ElevatedButton.styleFrom(
-        primary: color,
+        backgroundColor: color,
         shape: CircleBorder(),
         padding: EdgeInsets.all(20),
       ),

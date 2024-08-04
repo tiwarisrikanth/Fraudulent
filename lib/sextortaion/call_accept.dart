@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -7,23 +9,24 @@ import 'package:fraudulent/home.dart';
 import 'package:fraudulent/sextortaion/call_media_chat.dart';
 import 'package:fraudulent/sextortaion/incoming_video_call.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:screenshot/screenshot.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
-class CAllingScreen extends StatefulWidget {
-  const CAllingScreen({super.key});
+class CallingScreen extends StatefulWidget {
+  const CallingScreen({super.key});
 
   @override
-  State<CAllingScreen> createState() => _CAllingScreenState();
+  State<CallingScreen> createState() => _CallingScreenState();
 }
 
-class _CAllingScreenState extends State<CAllingScreen> {
+class _CallingScreenState extends State<CallingScreen> {
   late CameraController _cameraController;
   late Future<void> _initializeControllerFuture;
   late Timer _screenshotTimer;
   late Timer _closeTimer;
   Timer? dfa;
-  final ScreenshotController _screenshotController = ScreenshotController();
+  final GlobalKey _repaintBoundaryKey = GlobalKey();
   final List<String> _screenshots = [];
   bool _isDisposed = false;
 
@@ -64,19 +67,20 @@ class _CAllingScreenState extends State<CAllingScreen> {
   }
 
   Future<void> _takeScreenshot() async {
-    final directory = await getTemporaryDirectory();
-    final filePath =
-        '${directory.path}/screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
-
     try {
-      final image = await _screenshotController.capture();
-      if (image != null) {
-        final file = File(filePath);
-        file.writeAsBytesSync(image);
-        setState(() {
-          _screenshots.add(filePath);
-        });
-      }
+      RenderRepaintBoundary boundary = _repaintBoundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      final image = await boundary.toImage();
+      final byteData = await image.toByteData(format: ImageByteFormat.png);
+      final Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+      final directory = await getTemporaryDirectory();
+      final filePath = '${directory.path}/screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
+      final file = File(filePath);
+      await file.writeAsBytes(pngBytes);
+
+      setState(() {
+        _screenshots.add(filePath);
+      });
     } catch (e) {
       print('Error taking screenshot: $e');
     }
@@ -105,25 +109,23 @@ class _CAllingScreenState extends State<CAllingScreen> {
     _cameraController.dispose();
     _screenshotTimer.cancel();
     _closeTimer.cancel();
-
     dfa?.cancel();
     super.dispose();
   }
 
-  returnss() {
+  Future<bool> returnss() async {
     Navigator.pushAndRemoveUntil(
         context, FadePageRoute(page: FraudTypesGrid()), (route) => false);
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        return returnss();
-      },
+      onWillPop: returnss,
       child: Scaffold(
-        body: Screenshot(
-          controller: _screenshotController,
+        body: RepaintBoundary(
+          key: _repaintBoundaryKey,
           child: Stack(
             children: [
               AudioCs(),
@@ -131,54 +133,45 @@ class _CAllingScreenState extends State<CAllingScreen> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 14.0, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
                   child: Container(
                     height: 60,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(90),
-                        color: Colors.black),
+                      borderRadius: BorderRadius.circular(90),
+                      color: Colors.black,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.videocam,
-                              color: Colors.white,
-                            )),
+                          onPressed: () {},
+                          icon: Icon(Icons.videocam, color: Colors.white),
+                        ),
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.mic_off,
-                              color: Colors.white,
-                            )),
+                          onPressed: () {},
+                          icon: Icon(Icons.mic_off, color: Colors.white),
+                        ),
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.cameraswitch_rounded,
-                              color: Colors.white,
-                            )),
+                          onPressed: () {},
+                          icon: Icon(Icons.cameraswitch_rounded, color: Colors.white),
+                        ),
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.screenshot_sharp,
-                              color: Colors.white,
-                            )),
+                          onPressed: _takeScreenshot,
+                          icon: Icon(Icons.screenshot_sharp, color: Colors.white),
+                        ),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(90),
-                              color: Colors.red),
+                            borderRadius: BorderRadius.circular(90),
+                            color: Colors.red,
+                          ),
                           child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(
-                                Icons.call_end,
-                                color: Colors.white,
-                              )),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(Icons.call_end, color: Colors.white),
+                          ),
                         ),
                       ],
                     ),
@@ -196,10 +189,11 @@ class _CAllingScreenState extends State<CAllingScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: CameraPreview(_cameraController)),
+                      borderRadius: BorderRadius.circular(10),
+                      child: CameraPreview(_cameraController),
+                    ),
                   ),
-                )
+                ),
             ],
           ),
         ),
@@ -235,8 +229,7 @@ class _AudioCsState extends State<AudioCs> {
 
   Future<void> playLocalAudio1() async {
     try {
-      await _audioPlayer1.play(AssetSource('audio/voice.mp3'),
-          mode: PlayerMode.mediaPlayer);
+      await _audioPlayer1.play(AssetSource('audio/voice.mp3'), mode: PlayerMode.mediaPlayer);
     } catch (e) {
       print('Error playing audio 1: $e');
     }
@@ -244,8 +237,7 @@ class _AudioCsState extends State<AudioCs> {
 
   Future<void> playLocalAudio2() async {
     try {
-      await _audioPlayer2.play(AssetSource('audio/voice_2.mp3'),
-          mode: PlayerMode.mediaPlayer);
+      await _audioPlayer2.play(AssetSource('audio/voice_2.mp3'), mode: PlayerMode.mediaPlayer);
     } catch (e) {
       print('Error playing audio 2: $e');
     }

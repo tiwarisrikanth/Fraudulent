@@ -195,7 +195,7 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Let's have some fun...You up for it?",
+                                  "If you are free now means Let's have fun !",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -224,7 +224,7 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Excuse me!",
+                                  "Yes, sure",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -252,7 +252,7 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Pick up the call and you will see...",
+                                  "Remove your shirt",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),

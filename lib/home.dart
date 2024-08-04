@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fraudulent/betting/views/auth/phone.dart';
 import 'package:fraudulent/digitalarrest/incomming%20call.dart';
 import 'package:fraudulent/sextortaion/incoming_video_call.dart';
 
@@ -31,6 +32,7 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
     {'name': 'Social Media Harassment', 'icon': Icons.people},
     {'name': 'Customer Care Frauds', 'icon': Icons.headset_mic},
     {'name': 'Online Gaming Frauds', 'icon': Icons.sports_esports},
+
   ];
 
   @override
@@ -138,7 +140,12 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
                         break;
                       // Add cases for other indices
                       case 15: // Online Gaming Frauds
-                        // _showOnlineGamingFraudsInfo(context);
+                            Navigator.push(
+                          context,
+                          FadePageRoute(
+                            page: Enter_Phone(),
+                          ),
+                        );
                         break;
                       default:
                       // _showGenericFraudInfo(context, fraudTypes[index]['name']);

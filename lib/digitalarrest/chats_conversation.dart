@@ -139,7 +139,7 @@ class _ChatScreenState extends State<ChatScreen> {
               width: 10,
             ),
             Text(
-              'DGP Office',
+              'CYBER CRIME DCP MUMBAI',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,

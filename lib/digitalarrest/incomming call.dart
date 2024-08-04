@@ -182,7 +182,7 @@ class CallButton extends StatelessWidget {
         color: Colors.white,
       ),
       style: ElevatedButton.styleFrom(
-        primary: color,
+        backgroundColor: color,
         shape: CircleBorder(),
         padding: EdgeInsets.all(20),
       ),
