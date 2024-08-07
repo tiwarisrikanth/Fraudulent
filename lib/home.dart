@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fraudulent/betting/views/auth/phone.dart';
 import 'package:fraudulent/digitalarrest/incomming%20call.dart';
+import 'package:fraudulent/jobFraud/firstScreen.dart';
 import 'package:fraudulent/sextortaion/incoming_video_call.dart';
 
 class FraudTypesGrid extends StatefulWidget {
@@ -118,7 +119,12 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
                         // _showShareMarketingInfo(context);
                         break;
                       case 2: // Job Frauds
-
+           Navigator.push(
+                          context,
+                          FadePageRoute(
+                            page: EmailListScreen(),
+                          ),
+                        );
                         break;
                       case 4:
                         Navigator.push(
