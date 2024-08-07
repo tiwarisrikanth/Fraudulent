@@ -54,7 +54,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'DGP Office',
+                        'Cribe Crime DCP',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -63,7 +63,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'Scam Caller named himself as DGP Office',
+                        'Scam Caller named himself as Ciber Crime DCP',
                         style: TextStyle(
                             color: Colors.white.withOpacity(0.6), fontSize: 12),
                       ),
