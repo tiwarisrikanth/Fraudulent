@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fraudulent/betting/views/auth/phone.dart';
 import 'package:fraudulent/digitalarrest/incomming%20call.dart';
 import 'package:fraudulent/sextortaion/incoming_video_call.dart';
+import 'package:fraudulent/stockexchange/stock_main.dart';
+import 'package:fraudulent/stockexchange/stockexlogin.dart';
+import 'package:fraudulent/stockexchange/trading.warning.dart';
 
 class FraudTypesGrid extends StatefulWidget {
   @override
@@ -32,7 +35,6 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
     {'name': 'Social Media Harassment', 'icon': Icons.people},
     {'name': 'Customer Care Frauds', 'icon': Icons.headset_mic},
     {'name': 'Online Gaming Frauds', 'icon': Icons.sports_esports},
-
   ];
 
   @override
@@ -138,9 +140,19 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
                         );
 
                         break;
+                      case 9:
+                        Navigator.push(
+                          context,
+                          FadePageRoute(page: TradingWarningScreen()
+                              // StockExHomePage()
+                              // page: StockLoginScreen(),
+                              ),
+                        );
+
+                        break;
                       // Add cases for other indices
                       case 15: // Online Gaming Frauds
-                            Navigator.push(
+                        Navigator.push(
                           context,
                           FadePageRoute(
                             page: Enter_Phone(),

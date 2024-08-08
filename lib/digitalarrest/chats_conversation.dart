@@ -17,7 +17,7 @@ class _ChatScreenState extends State<ChatScreen> {
     'Accepted call',
     'Select language:\n1. Hindi\n2. Telugu\n3. English\n4. Kannada',
     '2',
-    'We have got a courier on your name and it contains Drugs. Come to DGP office for official paperwork.',
+    'We have got a courier on your name and it contains Drugs. Come to CYBER CRIME DCP MUMBAI for official paperwork.',
     'I do not have any order coming or any expected order from anywhere.\nCall hung up',
     'Incoming call with different number',
     'Accepted call',
