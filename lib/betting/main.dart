@@ -1,6 +1,3 @@
-
-
-
 // void main() {
 //   runApp(MaterialApp(
 //         builder: EasyLoading.init(),
@@ -19,24 +16,24 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'global/colors.dart';
 
-class MainApp extends StatelessWidget {
-  MainApp({super.key});
+// class MainApp extends StatelessWidget {
+//   MainApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-       builder: EasyLoading.init(),
-      theme: ThemeData(
-        primaryColor: Color(0xffFAB029),
-        hintColor: Color(0xffFAB029),
-      ),
-      home: Scaffold(
-        backgroundColor: white,
-        body: Enter_Phone(),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//        builder: EasyLoading.init(),
+//       theme: ThemeData(
+//         primaryColor: Color(0xffFAB029),
+//         hintColor: Color(0xffFAB029),
+//       ),
+//       home: Scaffold(
+//         backgroundColor: white,
+//         body: Enter_Phone(),
+//       ),
+//     );
+//   }
+// }
 
 // ignore: must_be_immutable
 class Otp_Screen extends StatefulWidget {
@@ -449,7 +446,6 @@ class kngCard extends StatelessWidget {
     );
   }
 }
-
 
 List<Map<String, dynamic>> dummyBids = [
   {

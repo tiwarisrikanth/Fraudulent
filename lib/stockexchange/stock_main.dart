@@ -18,41 +18,41 @@ class _StockExHomePageState extends State<StockExHomePage> {
 
   @override
   void initState() {
-    _startToastTimer();
+    // _startToastTimer();
     super.initState();
   }
 
-  void _startToastTimer() {
-    Timer.periodic(Duration(seconds: 10), (Timer timer) {
-      int index = timer.tick % messages.length;
-      toastification.show(
-        context: context, // optional if you use ToastificationWrapper
-        type: ToastificationType.success,
-        style: ToastificationStyle.flatColored,
-        autoCloseDuration: const Duration(seconds: 5),
-        title: messages[index],
-        // you can also use RichText widget for title and description parameters
-        description: "You can also win",
-        alignment: Alignment.topRight,
-        direction: TextDirection.ltr,
-        animationDuration: const Duration(milliseconds: 300),
+  // void _startToastTimer() {
+  //   Timer.periodic(Duration(seconds: 10), (Timer timer) {
+  //     int index = timer.tick % messages.length;
+  //     toastification.show(
+  //       context: context, // optional if you use ToastificationWrapper
+  //       type: ToastificationType.success,
+  //       style: ToastificationStyle.flatColored,
+  //       autoCloseDuration: const Duration(seconds: 5),
+  //       title: messages[index],
+  //       // you can also use RichText widget for title and description parameters
+  //       description: "You can also win",
+  //       alignment: Alignment.topRight,
+  //       direction: TextDirection.ltr,
+  //       animationDuration: const Duration(milliseconds: 300),
 
-        icon: const Icon(Icons.check),
-        primaryColor: Colors.green,
+  //       icon: const Icon(Icons.check),
+  //       primaryColor: Colors.green,
 
-        foregroundColor: Colors.black,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        borderRadius: BorderRadius.circular(12),
+  //       foregroundColor: Colors.black,
+  //       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+  //       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+  //       borderRadius: BorderRadius.circular(12),
 
-        showProgressBar: true,
-        closeButtonShowType: CloseButtonShowType.onHover,
-        closeOnClick: false,
-        pauseOnHover: true,
-        dragToClose: true,
-      );
-    });
-  }
+  //       showProgressBar: true,
+  //       closeButtonShowType: CloseButtonShowType.onHover,
+  //       closeOnClick: false,
+  //       pauseOnHover: true,
+  //       dragToClose: true,
+  //     );
+  //   });
+  // }
 
   final List<String> messages = [
     "Alice won ₹562344.22",

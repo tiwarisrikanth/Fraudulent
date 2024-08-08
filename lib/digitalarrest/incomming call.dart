@@ -42,11 +42,12 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                             width: 90,
                             height: 90,
                             decoration: BoxDecoration(
+                              color: Colors.white,
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    'https://upload.wikimedia.org/wikipedia/en/e/ea/Appolice%28emblem%29.png'),
+                                    'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Mumbai_Police_logo.png/280px-Mumbai_Police_logo.png'),
                               ),
                             ),
                           ),
@@ -54,7 +55,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'CYBER CRIME DCP MUMBAI',
+                        'Cyber Crime DCP',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -63,7 +64,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'Scam Caller named himself as CYBER CRIME DCP MUMBAI',
+                        'Scam Caller named himself as Cyber Crime DCP',
                         style: TextStyle(
                             color: Colors.white.withOpacity(0.6), fontSize: 12),
                       ),

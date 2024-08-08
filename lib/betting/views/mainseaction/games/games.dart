@@ -191,7 +191,7 @@ class _EnterGameState extends State<EnterGame> {
               ),
               SizedBox(height: 16.0),
               Text(
-                'This is a simulation meant to show you how frauds are done. Stay away from these.',
+                'This is just for an awareness,please stay away from these type of gaming apps',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0),
               ),

@@ -131,7 +131,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                      'https://upload.wikimedia.org/wikipedia/en/e/ea/Appolice%28emblem%29.png'),
+                      'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Mumbai_Police_logo.png/280px-Mumbai_Police_logo.png'),
                 ),
               ),
             ),
