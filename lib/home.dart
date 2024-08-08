@@ -1,9 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fraudulent/adhaar/firstScreen.dart';
+import 'package:fraudulent/betting/views/auth/logIn.dart';
 import 'package:fraudulent/betting/views/auth/phone.dart';
 import 'package:fraudulent/digitalarrest/incomming%20call.dart';
 import 'package:fraudulent/jobFraud/firstScreen.dart';
+import 'package:fraudulent/partTime/auth/login.dart';
 import 'package:fraudulent/sextortaion/incoming_video_call.dart';
 
 class FraudTypesGrid extends StatefulWidget {
@@ -22,6 +25,7 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
     {'name': 'Job Frauds', 'icon': Icons.work_off},
     {'name': 'Aadhar Enabled Payment System', 'icon': Icons.fingerprint},
     {'name': 'Digital Arrest', 'icon': Icons.gavel},
+     {'name': 'Work From Home', 'icon': Icons.work_history},
     {'name': 'APK File/Link Opening Frauds', 'icon': Icons.link_off},
     {'name': 'Online Shopping Frauds', 'icon': Icons.shopping_cart},
     {'name': 'Honey Trap', 'icon': Icons.favorite},
@@ -126,11 +130,29 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
                           ),
                         );
                         break;
+                                        case 3:
+                        Navigator.push(
+                          context,
+                          FadePageRoute(
+                            page: InfoScreen(),
+                          ),
+                        );
+
+                        break; 
                       case 4:
                         Navigator.push(
                           context,
                           FadePageRoute(
                             page: IncomingCallScreen2(),
+                          ),
+                        );
+
+                        break;
+                              case 5:
+                        Navigator.push(
+                          context,
+                          FadePageRoute(
+                            page: login6(),
                           ),
                         );
 
