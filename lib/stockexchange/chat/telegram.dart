@@ -201,8 +201,7 @@ class _StockChatWhatTeleState extends State<StockChatWhatTele> {
                                       builder: (context) => StockExHomePage()));
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blue, // Background color
-                              onPrimary: Colors.white, // Text color
+                              foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 12.0), // Padding
                               shape: RoundedRectangleBorder(

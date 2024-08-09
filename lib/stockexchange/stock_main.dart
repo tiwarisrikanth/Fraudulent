@@ -235,7 +235,7 @@ class _StockExHomePageState extends State<StockExHomePage> {
                                       style: TextStyle(color: white),
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                      primary: Colors.grey[800],
+                                      backgroundColor: Colors.grey[800],
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
@@ -254,7 +254,7 @@ class _StockExHomePageState extends State<StockExHomePage> {
                                       style: TextStyle(color: white),
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                      primary: Colors.grey[800],
+                                      backgroundColor: Colors.grey[800],
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       ),
@@ -331,7 +331,7 @@ class _StockExHomePageState extends State<StockExHomePage> {
             primaryColor: Colors.red,
             textTheme: Theme.of(context)
                 .textTheme
-                .copyWith(caption: new TextStyle(color: Colors.yellow))),
+                .copyWith(bodySmall: new TextStyle(color: Colors.yellow))),
         child: BottomNavigationBar(
           useLegacyColorScheme: false,
           currentIndex: selectedBotoIN,

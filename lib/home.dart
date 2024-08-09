@@ -233,8 +233,11 @@
 // }
 
 import 'dart:math';
-
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fraudulent/adhaar/firstScreen.dart';
 import 'package:fraudulent/betting/views/auth/logIn.dart';
 import 'package:fraudulent/betting/views/auth/phone.dart';
@@ -249,6 +252,8 @@ import 'package:fraudulent/stockexchange/chat/whatsappchat.dart';
 import 'package:fraudulent/stockexchange/stock_main.dart';
 import 'package:fraudulent/stockexchange/stockexlogin.dart';
 import 'package:fraudulent/stockexchange/trading.warning.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FraudTypesGrid extends StatefulWidget {
   @override
@@ -260,6 +265,8 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
   late AnimationController _controller;
   late Animation<double> _animation;
   late List<Color> itemColors;
+  late Set<int> clickedTiles; // Track clicked tiles
+  late SharedPreferences prefs;
 
   final List<Map<String, dynamic>> fraudTypes = [
     {'name': 'Digital Arrest', 'icon': Icons.gavel},
@@ -283,8 +290,9 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
     )..repeat(reverse: true);
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
 
-    // Initialize item colors
     itemColors = List.generate(fraudTypes.length, (index) => getRandomColor());
+    clickedTiles = {}; // Initialize clicked tiles set
+    _loadClickedTiles(); // Load clicked tiles from SharedPreferences
   }
 
   @override
@@ -298,21 +306,131 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
         .withOpacity(0.7);
   }
 
+  Future<void> _loadClickedTiles() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      clickedTiles = (prefs.getStringList('clickedTiles') ?? [])
+          .map((index) => int.parse(index))
+          .toSet();
+    });
+  }
+
+  Future<void> _saveClickedTile(int index) async {
+    setState(() {
+      clickedTiles.add(index);
+    });
+    await prefs.setStringList(
+        'clickedTiles', clickedTiles.map((index) => index.toString()).toList());
+
+    // Check if all tiles are clicked
+    if (clickedTiles.length == fraudTypes.length) {
+      setState(() {});
+    }
+  }
+
+  void _navigateToScreen(int index) {
+    _saveClickedTile(index);
+    switch (index) {
+      case 0: // Digital Arrest
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => IncomingCallScreen2(),
+          ),
+        );
+        break;
+      case 1: // Sextortion
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => IncomingCallScreen(),
+          ),
+        );
+        break;
+      case 2: // Online Gaming Frauds
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Enter_Phone(),
+          ),
+        );
+        break;
+      case 3: // Job Frauds
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => JobFraudAwarenessApp(),
+          ),
+        );
+        break;
+      case 4: // Share Marketing
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => StockChatWhat(),
+          ),
+        );
+        break;
+      case 5: // Loan Apps Harassment
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoanSection(),
+          ),
+        );
+        break;
+      case 6: // Honey Trap
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => IncomingCallScreenH(),
+          ),
+        );
+        break;
+      case 7: // Aadhar Enabled Payment System
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => InfoScreen(),
+          ),
+        );
+        break;
+      case 8: // Online Shopping Frauds
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OLXScreen(),
+          ),
+        );
+        break;
+      case 9: // Work From Home
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const login6(),
+          ),
+        );
+        break;
+      default:
+      // Handle other cases
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title:
-            Text('Be a cyber citizen', style: TextStyle(color: Colors.black)),
+            const Text('Be a cyber citizen', style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Stack(
         children: [
           GridView.builder(
-            padding: EdgeInsets.all(16),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            padding: const EdgeInsets.all(16),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.75,
               crossAxisSpacing: 12,
@@ -324,128 +442,9 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
-                color: itemColors[index], // Use stored color
+                color: itemColors[index],
                 child: InkWell(
-                  onTap: () {
-                    switch (index) {
-                      case 0: // Digital Arrest
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: IncomingCallScreen2(),
-                          ),
-                        );
-                        break;
-                      case 1: // Sextortion
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: IncomingCallScreen(),
-                          ),
-                        );
-                        break;
-                      case 2: // Job Frauds
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: Enter_Phone(),
-                          ),
-                        );
-                        // Navigator.push(
-                        //   context,
-                        //   FadePageRoute(
-                        //     page: login6(),
-                        //   ),
-                        // );
-                        // Navigator.push(
-                        //   context,
-                        //   FadePageRoute(
-                        //     page: login6(),
-                        //   ),
-                        // );
-
-                        break;
-                      case 3:
-                        //
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: JobFraudAwarenessApp(),
-                          ),
-                        );
-                        break;
-                      case 4:
-                        //
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: StockChatWhat(),
-                          ),
-                        );
-                        break;
-                      // case 9:
-                      //   Navigator.push(
-                      //     context,
-                      //     FadePageRoute(
-                      //       page: login6(),
-                      //     ),
-                      //   );
-                      //   // Navigator.push(
-                      //   //   context,
-                      //   //   FadePageRoute(
-                      //   //     page: InfoScreen(),
-                      //   //   ),
-                      //   // );
-                      //   break;
-                      case 7:
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: InfoScreen(),
-                          ),
-                        );
-                        break;
-                      case 9:
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: const login6(),
-                          ),
-                        );
-                        break;
-                      // case 8:
-                      //   Navigator.push(
-                      //     context,
-                      //     FadePageRoute(
-                      //       page: IncomingCallScreen(),
-                      //     ),
-                      //   );
-                      //   break;
-                      case 5:
-                        Navigator.push(
-                          context,
-                          FadePageRoute(page: const LoanSection()),
-                        );
-                        break;
-                      case 6:
-                        Navigator.push(
-                          context,
-                          FadePageRoute(page: IncomingCallScreenH()),
-                        );
-                        break;
-                      // Add cases for other indices
-                      case 8: // Online Gaming Frauds
-                        Navigator.push(
-                          context,
-                          FadePageRoute(
-                            page: OLXScreen(),
-                          ),
-                        );
-                        break;
-                      default:
-                      // Handle other cases
-                    }
-                  },
+                  onTap: () => _navigateToScreen(index),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -454,13 +453,13 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
                         size: 40,
                         color: Colors.white,
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: Text(
                           fraudTypes[index]['name'],
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
@@ -473,7 +472,132 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
               );
             },
           ),
+          if (clickedTiles.length == fraudTypes.length)
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: FloatingActionButton(
+  onPressed: () async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userName = prefs.getString('userName');
+    if (userName == null) {
+      // Handle the case where the user name is not available
+      return;
+    }
+
+    DateTime currentDate = DateTime.now();
+
+    CertificateGenerator generator = CertificateGenerator(
+      imagePath: 'assets/images/img.jpeg', // path to your certificate image
+    );
+
+    File certificate = await generator.generateCertificate(userName, currentDate);
+
+    // Display or save the certificate
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Certificate generated!')),
+    );
+
+    // Optionally, display the image in a new screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DisplayCertificateScreen(imagePath: certificate.path)),
+    );
+  },
+  child: const Icon(Icons.check),
+),
+
+            ),
         ],
+      ),
+    );
+  }
+}
+
+
+class CertificateGenerator {
+  final String imagePath;
+
+  CertificateGenerator({required this.imagePath});
+
+  Future<File> generateCertificate(String name, DateTime date) async {
+    final ByteData data = await rootBundle.load(imagePath);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+    ui.FrameInfo frameInfo = await codec.getNextFrame();
+    ui.Image image = frameInfo.image;
+
+    final pictureRecorder = ui.PictureRecorder();
+    final canvas = Canvas(pictureRecorder);
+    final size = Size(image.width.toDouble(), image.height.toDouble());
+
+    canvas.drawImage(image, Offset.zero, Paint());
+
+    final textPainter = TextPainter(
+      textDirection: TextDirection.ltr,
+    );
+
+    final nameTextStyle = TextStyle(
+      color: Colors.black,
+      fontSize: 40,
+      fontWeight: FontWeight.bold,
+    );
+
+    textPainter.text = TextSpan(
+      text: name,
+      style: nameTextStyle,
+    );
+    textPainter.layout(
+      minWidth: 0,
+      maxWidth: size.width,
+    );
+    textPainter.paint(
+      canvas,
+      Offset(size.width * 0.5 - textPainter.width * 0.5, size.height * 0.4),
+    );
+
+    final dateTextStyle = TextStyle(
+      color: Colors.black,
+      fontSize: 30,
+    );
+
+    textPainter.text = TextSpan(
+      text: '${date.toLocal()}'.split(' ')[0], // Date as yyyy-MM-dd
+      style: dateTextStyle,
+    );
+    textPainter.layout(
+      minWidth: 0,
+      maxWidth: size.width,
+    );
+    textPainter.paint(
+      canvas,
+      Offset(size.width * 0.5 - textPainter.width * 0.5, size.height * 0.6),
+    );
+
+    final picture = pictureRecorder.endRecording();
+    final img = await picture.toImage(image.width, image.height);
+    final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
+    final buffer = byteData!.buffer.asUint8List();
+
+    final directory = (await getApplicationDocumentsDirectory()).path;
+    final file = File('$directory/certificate.png');
+    await file.writeAsBytes(buffer);
+
+    return file;
+  }
+}
+
+
+class DisplayCertificateScreen extends StatelessWidget {
+  final String imagePath;
+
+  DisplayCertificateScreen({required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Your Certificate')),
+      body: Center(
+        child: Image.file(File(imagePath)),
       ),
     );
   }

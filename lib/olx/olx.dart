@@ -1,13 +1,26 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class OLXScreen extends StatelessWidget {
   final List<Map<String, dynamic>> items = [
+       {
+      'title': 'Maruti Suzuki Swift 2020',
+      'actualPrice': '₹7,50,000',
+      'offerPrice': '₹6,70,000',
+      'imageUrl':
+          'https://imgs.search.brave.com/rgQ8xdANRp_QjEtvg_ocJ8fWSh8zkP3Jv6SAoABvKN8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZWph/OC5rdWlrci5jb20v/aTUvMjAyNDA2MDkv/UmVkLTIwMTUtTWFy/dXRpLVN1enVraS1T/d2lmdC1aREktLS0t/LTEzMDAwMC1rbXMt/ZHJpdmVuLWluLUtL/LU5hZ2FyLWFrX0xX/QlA5NjY3OTMyNTIt/MTcxNzk0MDgxNV9n/di5qcGVn',
+      'location': '7km away',
+      'condition': 'Well Maintained',
+      'description':
+          'Maruti Suzuki Swift 2020 in excellent condition with low mileage. A compact car that is perfect for city driving.',
+    },
     {
       'title': 'Royal Enfield Classic 350',
       'actualPrice': '₹1,80,000',
       'offerPrice': '₹1,50,000',
       'imageUrl':
-          'https://imgd.aeplcdn.com/1056x594/bw/models/royal-enfield-classic-350-redditch-series-single-channel-abs20210908093608.jpg',
+          'https://imgs.search.brave.com/feJsrM_qc-fjQA3y9F47ofNtaWfB_VRaQ4M77exDmz8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4x/LmFjZWRtcy5jb20v/dzU2MC1oMzI1L3Bo/b3Rvcy9saXN0aW5n/LzIwMjItMDctMDEv/MTU1MjI0NjEzN2E3/MzM0NjU4ZmRlMzc3/OTg3NzViZTZfbGFy/Z2UuanBnLndlYnA',
       'location': '5km away',
       'condition': 'Well Maintained',
       'description':
@@ -18,7 +31,7 @@ class OLXScreen extends StatelessWidget {
       'actualPrice': '₹1,60,000',
       'offerPrice': '₹1,40,000',
       'imageUrl':
-          'https://imgd.aeplcdn.com/1056x594/bw/models/yamaha-yzf-r15-v4-std20210921024021.jpg',
+          'https://imgs.search.brave.com/anTyl0Sc4J1A-0dUnMM8Kddky2mvif8B-xGpCz3xo2w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4x/LmFjZWRtcy5jb20v/dXBsb2Fkcy9jYXRl/Z29yeS9ZYW1haGEv/MjAyMTEwMjkwOTI1/MjYwMDAwMDAtNjA2/MzE5MjQ1NDc2ODcy/NjAxNy5qcGc',
       'location': '10km away',
       'condition': 'Brand New',
       'description':
@@ -29,29 +42,19 @@ class OLXScreen extends StatelessWidget {
       'actualPrice': '₹10,00,000',
       'offerPrice': '₹8,50,000',
       'imageUrl':
-          'https://imgd.aeplcdn.com/1056x594/n/cw/ec/44386/honda-city-right-front-three-quarter.jpeg',
+          'https://imgs.search.brave.com/WgkMfOjs_gwBrca2NTghDvI5B26tPi57zXYl-LCLG5o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90ZWph/OC5rdWlrci5jb20v/aTUvMjAyNDA2MzAv/V2hpdGUtMjAxNi1I/b25kYS1DaXR5LVNW/LU1ULVBFVFJPTC0t/LTMzMzcxLWttcy1k/cml2ZW4taW4tYWtf/TFdCUDEwMDkzOTY1/NTgtMTcxOTcxMzMx/NV9ndi5qcGVn',
       'location': '15km away',
       'condition': 'Like New',
       'description':
           'Honda City 2019 model with all the latest features and a smooth driving experience. A perfect family car.',
     },
-    {
-      'title': 'Maruti Suzuki Swift 2020',
-      'actualPrice': '₹7,50,000',
-      'offerPrice': '₹6,70,000',
-      'imageUrl':
-          'https://imgd.aeplcdn.com/1056x594/n/cw/ec/41519/marutisuzuki-swift-right-front-three-quarter13.jpeg',
-      'location': '7km away',
-      'condition': 'Well Maintained',
-      'description':
-          'Maruti Suzuki Swift 2020 in excellent condition with low mileage. A compact car that is perfect for city driving.',
-    },
+ 
     {
       'title': 'iPhone 13 Pro Max',
       'actualPrice': '₹1,30,000',
       'offerPrice': '₹1,10,000',
       'imageUrl':
-          'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-pro-max-family-hero.png',
+          'https://imgs.search.brave.com/fh9SDFY0gC8_uDrUq7inkspbiSo0o6bn85MUtkftbGA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hcG9s/bG8ub2x4LmluL3Yx/L2ZpbGVzL2t2bHho/aTNwNnZidTMtSU4v/aW1hZ2U7cz0yNzJ4/MA',
       'location': '3km away',
       'condition': 'Like New',
       'description':
@@ -62,7 +65,7 @@ class OLXScreen extends StatelessWidget {
       'actualPrice': '₹1,20,000',
       'offerPrice': '₹95,000',
       'imageUrl':
-          'https://images.samsung.com/is/image/samsung/p6pim/in/sm-s908ezkdinu/gallery/in-galaxy-s22-ultra-s908-413722-sm-s908ezkdinu-530565257',
+          'https://imgs.search.brave.com/oPPOjKiA6bM97zhoaxRvq8ZrwafTaUdAHQ6LHQ5E5WM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hcG9s/bG8ub2x4LmluL3Yx/L2ZpbGVzL3dzaGF1/NWtjdDl0MzMtSU4v/aW1hZ2U7cz0yNzJ4/MA',
       'location': '4km away',
       'condition': 'Brand New',
       'description':
@@ -334,6 +337,9 @@ class ProductDetailsScreen extends StatelessWidget {
   }
 }
 
+
+
+
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -380,7 +386,13 @@ class _ChatScreenState extends State<ChatScreen> {
       'sender': 'Seller',
       'text': 'Here are the photos of the package being prepared and shipped.',
       'isImage': true,
-      'imageUrl': 'https://via.placeholder.com/150'
+      'imageUrl': 'https://www.wikihow.com/images/thumb/6/64/Drive-in-India-Step-1.jpg/v4-460px-Drive-in-India-Step-1.jpg.webp'
+    },
+    {
+      'sender': 'Seller',
+      'text': 'The package is on its way! Here’s another photo for your reference.',
+      'isImage': true,
+      'imageUrl': 'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202301/delhi-accident-1200_2-sixteen_nine.jpg?size=1280:720'
     },
     {
       'sender': 'Seller',
@@ -428,52 +440,52 @@ class _ChatScreenState extends State<ChatScreen> {
   ];
 
   final TextEditingController _controller = TextEditingController();
-  final ScrollController _scrollController = ScrollController();
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_scrollListener);
+    _scrollController = ScrollController();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollController.jumpTo(_scrollController
-          .position.minScrollExtent); // Scroll to top initially
+      Timer(Duration(seconds: 5), () {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(seconds: 2),
+          curve: Curves.easeInOut,
+        );
+        Future.delayed(Duration(seconds: 3),(){
+       _showScamAlert(); // Show alert when messages are loaded
+        });
+ 
+      });
     });
-  }
-
-  void _scrollListener() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
-// User has scrolled to the end
-      _showScamAlert();
-    }
-  }
-
-  void _showScamAlert() {
-    if (messages.isNotEmpty && messages.last['sender'] == 'System') {
-// Avoid showing the dialog if the last message is from 'System'
-      return;
-    }
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Alert'),
-        content: Text('You have been scammed!'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+
+  void _showScamAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('It\'s a Scam'),
+          content: Text('ఫేక్ ఆప్స్ ద్వారా ఆన్ లైన్ లో తక్కువకి వస్తుంది అని చూపిన వస్తువుల్ని కొనడానికి వెళ్ళకండి, ఫిజికల్ గా చూసిన తరువాతనే కొనండి'),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -484,8 +496,7 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://randomuser.me/api/portraits/men/1.jpg'), // Random profile image
+              backgroundImage: NetworkImage('https://randomuser.me/api/portraits/men/1.jpg'),
             ),
             SizedBox(width: 10),
             Column(
@@ -498,118 +509,143 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.videocam),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.call),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
-          ),
+          IconButton(icon: Icon(Icons.videocam), onPressed: () {}),
+          IconButton(icon: Icon(Icons.call), onPressed: () {}),
+          IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              reverse: true,
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final message = messages[messages.length - 1 - index];
-                final isSeller = message['sender'] == 'Seller';
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: Align(
-                    alignment:
-                        isSeller ? Alignment.centerLeft : Alignment.centerRight,
-                    child: Column(
-                      crossAxisAlignment: isSeller
-                          ? CrossAxisAlignment.start
-                          : CrossAxisAlignment.end,
-                      children: [
-                        message['isImage'] == true
-                            ? Image.network(message['imageUrl'] ?? '',
-                                width: 150, height: 150)
-                            : message['isPayment'] == true
-                                ? ElevatedButton(
-                                    onPressed: () {
-// Handle payment process
-                                    },
-                                    child: Text('Pay ${message['amount']}'),
-                                  )
-                                : message['isEndCall'] == true
-                                    ? Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.call_end,
-                                              color: Colors.red),
-                                          SizedBox(width: 8),
-                                          Text(message['text'] ?? '',
-                                              style:
-                                                  TextStyle(color: Colors.red)),
-                                        ],
-                                      )
-                                    : Container(
-                                        padding: EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                          color: isSeller
-                                              ? Colors.teal[100]
-                                              : Colors.green[100],
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                            bottomLeft: isSeller
-                                                ? Radius.circular(0)
-                                                : Radius.circular(10),
-                                            bottomRight: isSeller
-                                                ? Radius.circular(10)
-                                                : Radius.circular(0),
-                                          ),
-                                        ),
-                                        child: Text(message['text'] ?? ''),
-                                      ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+          Opacity(
+            opacity: 0.1,
+            child: Image.asset(
+              'assets/images/d.png',
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: 'Type a message',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
+          Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    children: messages.map((message) {
+                      final isSeller = message['sender'] == 'Seller';
+                      return Align(
+                        alignment: isSeller ? Alignment.centerLeft : Alignment.centerRight,
+                        child: Column(
+                          crossAxisAlignment: isSeller ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+                          children: [
+                            message['isImage'] == true
+                                ? GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet<void>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return SizedBox(
+                                            height: MediaQuery.of(context).size.height,
+                                            child: Image.network(
+                                              message['imageUrl'] ?? '',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                      padding: EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: Colors.blueAccent,
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Image.network(
+                                        message['imageUrl'] ?? '',
+                                        width: 150,
+                                        height: 150,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )
+                                : message['isPayment'] == true
+                                    ? ElevatedButton(
+                                        onPressed: () {},
+                                        child: Text('Pay ${message['amount']}'),
+                                      )
+                                    : message['isEndCall'] == true
+                                        ? Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.call_end, color: Colors.red),
+                                              SizedBox(width: 8),
+                                              Text(
+                                                message['text'] ?? '',
+                                                style: TextStyle(color: Colors.red),
+                                              ),
+                                            ],
+                                          )
+                                        : Container(
+                                            margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                            padding: EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                              color: isSeller ? Colors.teal[100] : Colors.green[100],
+                                              borderRadius: BorderRadius.circular(15),
+                                            ),
+                                            child: Text(message['text'] ?? ''),
+                                          ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
-                SizedBox(width: 8),
-                IconButton(
-                  icon: Icon(Icons.mic),
-                  onPressed: () {},
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    IconButton(icon: Icon(Icons.attach_file), onPressed: () {}),
+                    IconButton(icon: Icon(Icons.camera_alt), onPressed: () {}),
+                    Expanded(
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          hintText: "Type a message",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.send),
+                      onPressed: () {
+                        if (_controller.text.isNotEmpty) {
+                          setState(() {
+                            messages.add({
+                              'sender': 'Buyer',
+                              'text': _controller.text,
+                            });
+                          });
+                          _controller.clear();
+                          Timer(Duration(milliseconds: 300), () {
+                            _scrollController.animateTo(
+                              _scrollController.position.maxScrollExtent,
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          });
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: () {
-// Handle sending a new message
-                  },
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

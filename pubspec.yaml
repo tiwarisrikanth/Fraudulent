@@ -72,6 +72,7 @@ dependencies:
   iconly: ^1.0.1
   ed_screen_recorder: ^0.0.15
   screen_recorder: ^0.3.0
+  shared_preferences: ^2.3.1
 
 dev_dependencies:
   flutter_test:

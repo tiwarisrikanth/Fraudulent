@@ -140,10 +140,10 @@ class _EmailScreensssssState extends State<EmailScreensssss> {
                         // Add your payment logic here
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // Button color
-                        onPrimary: Colors.blue, // Text color
+                        backgroundColor: Colors.white, // Button color
+                        // onPrimary: Colors.blue, // Text color
                       ),
-                      child: Text('Pay Now'),
+                      child: Text('Pay Now',style: TextStyle(color: Colors.blue),),
                     ),
                   ],
                 ),

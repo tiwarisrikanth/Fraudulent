@@ -350,8 +350,8 @@ class _StockScreenState extends State<StockScreen>
     return ElevatedButton(
       child: Text(text),
       style: ElevatedButton.styleFrom(
-        primary: isSelected ? Colors.blue : Colors.grey[200],
-        onPrimary: isSelected ? Colors.white : Colors.black,
+        backgroundColor: isSelected ? Colors.blue : Colors.grey[200],
+        // onPrimary: isSelected ? Colors.white : Colors.black,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
@@ -366,7 +366,7 @@ class _StockScreenState extends State<StockScreen>
           child: ElevatedButton(
             child: Text('Buy', style: TextStyle(fontSize: 18)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
+              backgroundColor: Colors.blue,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               padding: EdgeInsets.symmetric(vertical: 16),
@@ -379,7 +379,7 @@ class _StockScreenState extends State<StockScreen>
           child: ElevatedButton(
             child: Text('Sell', style: TextStyle(fontSize: 18)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.red,
+              backgroundColor: Colors.red,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               padding: EdgeInsets.symmetric(vertical: 16),
@@ -865,8 +865,7 @@ class _StockScreensState extends State<StockScreens>
     return ElevatedButton(
       child: Text(text),
       style: ElevatedButton.styleFrom(
-        primary: isSelected ? Colors.blue : Colors.grey[200],
-        onPrimary: isSelected ? Colors.white : Colors.black,
+        foregroundColor: isSelected ? Colors.white : Colors.black, backgroundColor: isSelected ? Colors.blue : Colors.grey[200],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
@@ -881,7 +880,7 @@ class _StockScreensState extends State<StockScreens>
           child: ElevatedButton(
             child: Text('Buy', style: TextStyle(fontSize: 18)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
+              backgroundColor: Colors.blue,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               padding: EdgeInsets.symmetric(vertical: 16),
@@ -894,7 +893,7 @@ class _StockScreensState extends State<StockScreens>
           child: ElevatedButton(
             child: Text('Sell', style: TextStyle(fontSize: 18)),
             style: ElevatedButton.styleFrom(
-              primary: Colors.red,
+              backgroundColor: Colors.red,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               padding: EdgeInsets.symmetric(vertical: 16),

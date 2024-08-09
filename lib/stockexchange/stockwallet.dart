@@ -10,8 +10,8 @@ class StockWallet extends StatelessWidget {
         primaryColor: Colors.teal,
         // accentColor: Colors.tealAccent,
         textTheme: TextTheme(
-          headline6: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          bodyText1: TextStyle(fontSize: 16.0),
+          titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          bodyLarge: TextStyle(fontSize: 16.0),
         ),
       ),
       home: Scaffold(
@@ -85,14 +85,14 @@ class StockWallet extends StatelessWidget {
                         'Deposit',
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).cardColor,
+                        backgroundColor: Theme.of(context).cardColor,
                       ),
                     ),
                     ElevatedButton(
                       onPressed: () {},
                       child: Text('Withdraw'),
                       style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).cardColor,
+                        backgroundColor: Theme.of(context).cardColor,
                       ),
                     ),
                   ],
@@ -108,7 +108,7 @@ class StockWallet extends StatelessWidget {
                     children: [
                       Text(
                         'Assets',
-                        style: Theme.of(context).textTheme.headline6,
+                        // style: Theme.of(context).textTheme.headline6,
                       ),
                       SizedBox(height: 8.0),
                       ListView.builder(
@@ -131,7 +131,7 @@ class StockWallet extends StatelessWidget {
                   onPressed: () {},
                   child: Text('Show All'),
                   style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).cardColor,
+                    backgroundColor: Theme.of(context).cardColor,
                     minimumSize: Size(double.infinity, 50.0),
                   ),
                 ),
