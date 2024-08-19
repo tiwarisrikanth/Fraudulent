@@ -1,0 +1,12 @@
+export 'package:flutter/material.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'colors.dart';
+export 'package:line_icons/line_icons.dart';
+export 'package:carousel_slider/carousel_slider.dart';
+export 'package:fraudulent/partTime/global/widgets.dart';
+export 'package:lucide_icons_flutter/lucide_icons.dart';
+export 'package:bounce/bounce.dart';
+export 'package:fraudulent/partTime/auth/register.dart';
+export 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+export 'package:pin_code_fields/pin_code_fields.dart';
+export 'package:iconly/iconly.dart';
