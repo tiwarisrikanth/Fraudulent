@@ -1,19 +1,17 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:fraudulent/home.dart';
 import 'package:fraudulent/honeytraps/call_media_chat.dart';
+import 'package:fraudulent/sextortaion/incoming_video_call.dart';
 import 'package:fraudulent/warning.dart';
 import 'package:image/image.dart' as img;
-import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
-import 'package:fraudulent/home.dart';
-import 'package:fraudulent/sextortaion/call_media_chat.dart';
-import 'package:fraudulent/sextortaion/incoming_video_call.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class CallingScreenH extends StatefulWidget {
@@ -63,7 +61,7 @@ class _CallingScreenHState extends State<CallingScreenH> {
       _takeScreenshot();
     });
 
-    _closeTimer = Timer(Duration(seconds: 35), () {
+    _closeTimer = Timer(Duration(seconds: 81), () {
       _screenshotTimer.cancel();
       _disposeControllers();
     });
@@ -92,7 +90,6 @@ class _CallingScreenHState extends State<CallingScreenH> {
   }
 
   void _disposeControllers() async {
-    // Dispose the camera controller and ensure the state is updated
     await _cameraController.dispose();
     setState(() {
       _isDisposed = true;
@@ -122,7 +119,6 @@ class _CallingScreenHState extends State<CallingScreenH> {
   Future<void> _createGifFromScreenshots() async {
     final List<img.Image> images = [];
 
-    // Load each screenshot and add it to the images list
     for (String path in _screenshots) {
       final File file = File(path);
       final bytes = await file.readAsBytes();
@@ -132,33 +128,23 @@ class _CallingScreenHState extends State<CallingScreenH> {
       }
     }
 
-    // Create an animated GIF
     final img.Animation gif = img.Animation();
 
-    // Add each frame to the GIF with a delay
     for (final image in images) {
       gif.addFrame(
         image,
-      ); // 100ms delay between frames
+      );
     }
 
-    // Encode GIF and save it
     final directory = await getTemporaryDirectory();
     final gifPath = '${directory.path}/output.gif';
     final gifFile = File(gifPath);
     gifFile.writeAsBytesSync(img.encodeGifAnimation(gif)!);
 
-    // Display the GIF or navigate to the next screen
     _navigateToGifDisplayScreen(gifPath);
   }
 
   void _navigateToGifDisplayScreen(String gifPath) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => GifDisplayScreen(gifPath: gifPath),
-    //   ),
-    // );
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -271,9 +257,6 @@ class _AudioCsHState extends State<AudioCsH> {
     Future.delayed(Duration(seconds: 7), () {
       playLocalAudio1();
     });
-    // Future.delayed(Duration(seconds: 7), () {
-    //   playLocalAudio2();
-    // });
   }
 
   Future<void> playLocalAudio1() async {
@@ -305,29 +288,30 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
-  late Timer _timer;
+
+  Timer? perio;
 
   @override
   void initState() {
     super.initState();
-    // Initialize the VideoPlayerController with the video asset
     _controller = VideoPlayerController.asset('assets/videos/vid2.mp4');
     _initializeVideoPlayerFuture = _controller.initialize().then((_) {
-      // Start the video automatically
       _controller.play();
-      // Stop the video after 30 seconds
-      _timer = Timer(Duration(seconds: 50), () {
-        _controller.pause();
-      });
+      _controller.setLooping(true);
     });
-    _controller.setLooping(true);
+    // perio = Timer.periodic(Duration(seconds: 6), (timer) {
+    //   _initializeVideoPlayerFuture = _controller.initialize().then((_) {
+    //     _controller.play();
+    //     _controller.setLooping(true);
+    //   });
+    // });
   }
 
   @override
   void dispose() {
-    super.dispose();
+    perio?.cancel();
     _controller.dispose();
-    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -360,22 +344,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             },
           ),
         ),
-      ),
-    );
-  }
-}
-
-class GifDisplayScreen extends StatelessWidget {
-  final String gifPath;
-
-  GifDisplayScreen({required this.gifPath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Generated GIF')),
-      body: Center(
-        child: Image.file(File(gifPath)),
       ),
     );
   }

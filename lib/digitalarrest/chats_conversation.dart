@@ -15,7 +15,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<String> _messages = [
     'Incoming call',
     'Accepted call',
-    'We have got a courier on your name and it contains Drugs. Come to CYBER CRIME DCP MUMBAI for official paperwork.',
+    'We have got a courier on your name and it contains Drugs. Come to FedEx MUMBAI for official paperwork.',
     'I do not have any order coming or any expected order from anywhere.\nCall hung up',
     'Incoming call with different number',
     'Accepted call',
@@ -146,7 +146,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Mumbai_Police_logo.png/280px-Mumbai_Police_logo.png'),
+                        'https://pbs.twimg.com/profile_images/1742941097528115201/crQJwctw_200x200.png'),
                   ),
                 ),
               ),
@@ -154,7 +154,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 width: 10,
               ),
               Text(
-                'CYBER CRIME DCP MUMBAI',
+                'FedEx MUMBAI',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,

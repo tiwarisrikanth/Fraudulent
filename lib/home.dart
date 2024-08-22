@@ -236,6 +236,8 @@ import 'dart:math';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:app_settings/app_settings.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:direct_caller_sim_choice/direct_caller_sim_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -384,18 +386,18 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
   }
 
   void _navigateToScreen(int index) {
-    if (index != 14 && index != 15) {
-      if (clickedTiles.contains(index)) {
-        // If the tile is already clicked, do not navigate again
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text('${fraudTypes[index]['name']} already viewed!')),
-        );
-        return;
-      }
+    // if (index != 14 && index != 15) {
+    //   if (clickedTiles.contains(index)) {
+    //     // If the tile is already clicked, do not navigate again
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(
+    //           content: Text('${fraudTypes[index]['name']} already viewed!')),
+    //     );
+    //     return;
+    //   }
 
-      _saveClickedTile(index);
-    }
+    //   _saveClickedTile(index);
+    // }
 
     switch (index) {
       case 0: // Digital Arrest
@@ -676,6 +678,14 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
           //   ),
         ],
       ),
+      floatingActionButton: clickedTiles.length >= 14
+          ? FloatingActionButton(
+              onPressed: () {
+                _openAppSettings();
+              },
+              child: Icon(Icons.delete_forever),
+            )
+          : SizedBox(),
       bottomNavigationBar: Container(
         height: 40,
         child: BottomAppBar(
@@ -687,5 +697,9 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
         ),
       ),
     );
+  }
+
+  void _openAppSettings() {
+    AppSettings.openAppSettings();
   }
 }

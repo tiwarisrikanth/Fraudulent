@@ -52,7 +52,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                      'https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Mumbai_Police_logo.png/280px-Mumbai_Police_logo.png'),
+                                      'https://pbs.twimg.com/profile_images/1742941097528115201/crQJwctw_200x200.png'),
                                 ),
                               ),
                             ),
@@ -60,7 +60,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          'Cyber Crime DCP',
+                          'FedEx',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -69,7 +69,7 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          'Scam Caller named himself as Cyber Crime DCP',
+                          'Scam Caller named himself as FedEx',
                           style: TextStyle(
                               color: Colors.white.withOpacity(0.6),
                               fontSize: 12),

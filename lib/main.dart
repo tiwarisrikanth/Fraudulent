@@ -211,14 +211,6 @@ class _UserFormState extends State<UserForm> {
                                   _openQRScanner(context);
                                 },
                                 icon: Icon(Icons.qr_code))),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your address';
-                          } else if (value.length < 10) {
-                            return 'Address should be at least 10 characters long';
-                          }
-                          return null;
-                        },
                       ),
                       const SizedBox(height: 32.0),
                       ElevatedButton(
