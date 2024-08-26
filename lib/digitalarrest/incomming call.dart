@@ -1,5 +1,5 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:fraudulent/digitalarrest/chats_conversation.dart';
 import 'package:fraudulent/sextortaion/call_accept.dart';
 import 'package:fraudulent/sextortaion/incoming_video_call.dart';
@@ -11,6 +11,30 @@ class IncomingCallScreen2 extends StatefulWidget {
 }
 
 class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _playAudio();
+  }
+
+  @override
+  void dispose() {
+    _stopAudio();
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _playAudio() async {
+    await _audioPlayer.play(AssetSource('audio/ring.mp3'), volume: 1.0);
+  }
+
+  Future<void> _stopAudio() async {
+    await _audioPlayer.stop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -18,101 +42,105 @@ class _IncomingCallScreen2State extends State<IncomingCallScreen2> {
         return returnsssss(context);
       },
       child: Scaffold(
-          body: Stack(
-        children: [
-          Image.asset(
-            'assets/images/doo.jpg',
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
-          ),
-          SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 40),
-                        Text(
-                          'Incoming Call',
-                          style: TextStyle(color: Colors.white, fontSize: 24),
-                        ),
-                        SizedBox(height: 20),
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            WaveAnimation(),
-                            Container(
-                              width: 90,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://pbs.twimg.com/profile_images/1742941097528115201/crQJwctw_200x200.png'),
+        body: Stack(
+          children: [
+            Image.asset(
+              'assets/images/doo.jpg',
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
+            ),
+            SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 40),
+                          Text(
+                            'Incoming Call',
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                          SizedBox(height: 20),
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              WaveAnimation(),
+                              Container(
+                                width: 90,
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      'https://pbs.twimg.com/profile_images/1742941097528115201/crQJwctw_200x200.png',
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          'FedEx',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                            ],
                           ),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          'Scam Caller named himself as FedEx',
-                          style: TextStyle(
+                          SizedBox(height: 20),
+                          Text(
+                            'FedEx',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            'Scam Caller named himself as FedEx',
+                            style: TextStyle(
                               color: Colors.white.withOpacity(0.6),
-                              fontSize: 12),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 50.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CallButton(
+                          icon: Icons.call_end,
+                          color: Colors.red,
+                          onPressed: () {
+                            // Handle reject call
+                            Navigator.pop(context);
+                          },
+                        ),
+                        SizedBox(width: 80),
+                        CallButton(
+                          icon: Icons.call,
+                          color: Colors.green,
+                          onPressed: () {
+                            _stopAudio();
+                            // Handle accept call
+                            Navigator.push(
+                              context,
+                              FadePageRoute(
+                                page: ChatScreen(),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 50.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CallButton(
-                        icon: Icons.call_end,
-                        color: Colors.red,
-                        onPressed: () {
-                          // Handle reject call
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(width: 80),
-                      CallButton(
-                        icon: Icons.call,
-                        color: Colors.green,
-                        onPressed: () {
-                          // Handle accept call
-                          Navigator.push(
-                            context,
-                            FadePageRoute(
-                              page: ChatScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      )),
+          ],
+        ),
+      ),
     );
   }
 }

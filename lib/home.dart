@@ -327,29 +327,34 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
     clickedTiles = {}; // Initialize clicked tiles set
     _loadClickedTiles(); // Load clicked tiles from SharedPreferences
     Future.delayed(Duration(seconds: 1), () {
-      requestCallPhonePermission();
+      requestPermissions();
     });
   }
 
-  Future<void> requestCallPhonePermission() async {
-    var status = await Permission.phone.status;
+  Future<void> requestPermissions() async {
+    // List of permissions to request
+    final permissions = [
+      Permission.phone,
+      Permission.microphone, // RECORD_AUDIO
+      Permission.camera, // CAMERA
+      Permission.storage, // WRITE_EXTERNAL_STORAGE and READ_EXTERNAL_STORAGE
+      // Permission.systemAlertWindow, // SYSTEM_ALERT_WINDOW
+    ];
 
-    if (status.isDenied) {
-      // Request the permission
-      status = await Permission.phone.request();
-    }
+    // Request permissions
+    final statusList = await permissions.request();
 
-    if (status.isGranted) {
-      // Permission granted, proceed with the action
-      print('CALL_PHONE permission granted');
-    } else if (status.isPermanentlyDenied) {
-      // Permission permanently denied, open app settings
-      print('CALL_PHONE permission is permanently denied');
-      openAppSettings();
-    } else {
-      // Permission denied
-      print('CALL_PHONE permission denied');
-    }
+    // Check the status of each permission
+    statusList.forEach((permission, status) {
+      if (status.isGranted) {
+        print('${permission.value} permission granted');
+      } else if (status.isDenied) {
+        print('${permission.value} permission denied');
+      } else if (status.isPermanentlyDenied) {
+        print('${permission.value} permission permanently denied');
+        openAppSettings(); // Open app settings if permission is permanently denied
+      }
+    });
   }
 
   @override
@@ -386,18 +391,18 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
   }
 
   void _navigateToScreen(int index) {
-    // if (index != 14 && index != 15) {
-    //   if (clickedTiles.contains(index)) {
-    //     // If the tile is already clicked, do not navigate again
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       SnackBar(
-    //           content: Text('${fraudTypes[index]['name']} already viewed!')),
-    //     );
-    //     return;
-    //   }
+    if (index != 14 && index != 15) {
+      if (clickedTiles.contains(index)) {
+        // If the tile is already clicked, do not navigate again
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text('${fraudTypes[index]['name']} already viewed!')),
+        );
+        return;
+      }
 
-    //   _saveClickedTile(index);
-    // }
+      _saveClickedTile(index);
+    }
 
     switch (index) {
       case 0: // Digital Arrest

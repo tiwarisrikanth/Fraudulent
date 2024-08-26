@@ -132,14 +132,14 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Colors.green.shade200,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Hello, Babe",
+                                  "Hi Mahesh",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -160,14 +160,14 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Color(0xFF25D366),
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Hello, Who is this?",
+                                  "Hi Swati",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -188,14 +188,42 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Colors.green.shade200,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "If you are free now means Let's have fun !",
+                                  "Come to your video call baby.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:02 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Oh, sure.",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -209,22 +237,21 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                             ),
                           ),
                         ),
-
                         Align(
-                          alignment: Alignment.centerRight,
+                          alignment: Alignment.centerLeft,
                           child: Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Colors.green.shade200,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Yes, sure",
+                                  "Let's have some fun.",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -239,20 +266,20 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.centerRight,
                           child: Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Color(0xFF25D366),
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Remove your shirt",
+                                  "Yeah, I am ready.",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -266,89 +293,161 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                             ),
                           ),
                         ),
-
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
-                            width: 150,
-                            height: 70,
                             margin: EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 10),
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Colors.green.shade200,
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: 1, horizontal: 1),
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Colors.white54,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadiusDirectional.circular(90),
-                                      color: Colors.blueAccent.withOpacity(0.4),
-                                    ),
-                                    child: Icon(
-                                      Icons.videocam,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Video Call",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 16),
-                                      ),
-                                      Text(
-                                        "28 mins",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 13),
-                                      ),
-                                    ],
-                                  ),
-                                  // SizedBox(height: 5),
-                                  // Text(
-                                  //   "12:03 AM",
-                                  //   style: TextStyle(color: Colors.white70, fontSize: 12),
-                                  // ),
-                                ],
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Okay, then remove your clothes, Mahi.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:06 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Yeah, you too.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:07 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade200,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Okay",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:08 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade200,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Looking so handsome, baby.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:09 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "You too, looking gorgeous, baby.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:10 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(5),
-                            height: 280,
+                            height: 550,
                             width: 280,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                color: Colors.blueAccent),
+                                color: Colors.green.shade200),
                             child: GridView.builder(
-                                itemCount: 4,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: 7,
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2),
@@ -390,7 +489,6 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                                 }),
                           ),
                         ),
-
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
@@ -398,20 +496,48 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Colors.green.shade200,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Send me 50,000/- rupees right away else i will forward this images to you contacts",
+                                  "Hello, have you seen your images?",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "12:55 AM",
+                                  "12:11 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Who are you?",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:12 AM",
                                   style: TextStyle(
                                       color: Colors.white70, fontSize: 12),
                                 ),
@@ -426,20 +552,20 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: Colors.green.shade200,
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Send me more 50,000/- rupees right away else i will forward this images to you contacts",
+                                  "I'm uploading your images in social media.",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  "01:55 AM",
+                                  "12:13 AM",
                                   style: TextStyle(
                                       color: Colors.white70, fontSize: 12),
                                 ),
@@ -447,16 +573,167 @@ class _ScreenshotGalleryState extends State<ScreenshotGallery> {
                             ),
                           ),
                         ),
-
-                        // ListView.builder(
-                        //   itemCount: screenshots.length,
-                        //   itemBuilder: (context, index) {
-                        //     return Container(
-                        //         height: 70,
-                        //         width: 80,
-                        //         child: Image.file(File(screenshots[index])));
-                        //   },
-                        // ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "No. What do you want?",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:14 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade200,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "If you don't send me money, five lakh rupee, I will post them.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:15 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  " Wait, wait. I am sending I am sending money. Send me your account number. ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:16 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade200,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "I will send QR code to you, send screenshot, post, sending money.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:15 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            height: 250,
+                            width: 250,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade200,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                'https://miro.medium.com/v2/resize:fit:789/1*A9YcoX1YxBUsTg7p-P6GBQ.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF25D366),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Ok, ok.Amount already sent",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  "12:16 AM",
+                                  style: TextStyle(
+                                      color: Colors.white70, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

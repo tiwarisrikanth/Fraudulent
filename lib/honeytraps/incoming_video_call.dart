@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:fraudulent/honeytraps/call_accept.dart';
@@ -13,11 +14,21 @@ class IncomingCallScreenH extends StatefulWidget {
 class _IncomingCallScreenHState extends State<IncomingCallScreenH> {
   late CameraController _cameraController;
   late Future<void> _initializeControllerFuture;
+  late AudioPlayer _audioPlayer;
+  Future<void> _playAudio() async {
+    await _audioPlayer.play(AssetSource('audio/ring.mp3'), volume: 1.0);
+  }
+
+  Future<void> _stopAudio() async {
+    await _audioPlayer.stop();
+  }
 
   @override
   void initState() {
     super.initState();
     _initializeCamera();
+    _audioPlayer = AudioPlayer();
+    _playAudio();
   }
 
   Future<void> _initializeCamera() async {
@@ -90,6 +101,7 @@ class _IncomingCallScreenHState extends State<IncomingCallScreenH> {
                                   ],
                                 ),
                                 SizedBox(height: 20),
+                                // xtarget
                                 Text(
                                   'Aurora',
                                   style: TextStyle(
@@ -108,6 +120,7 @@ class _IncomingCallScreenHState extends State<IncomingCallScreenH> {
                                 icon: Icons.call_end,
                                 color: Colors.red,
                                 onPressed: () {
+                                  _stopAudio();
                                   // Handle reject call
                                   Navigator.pop(context);
                                 },
@@ -117,6 +130,7 @@ class _IncomingCallScreenHState extends State<IncomingCallScreenH> {
                                 icon: Icons.videocam,
                                 color: Colors.green,
                                 onPressed: () {
+                                  _stopAudio();
                                   // Handle accept call
                                   Navigator.push(context,
                                       FadePageRoute(page: CallingScreenH()));

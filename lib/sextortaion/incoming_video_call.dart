@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:fraudulent/sextortaion/call_accept.dart';
@@ -12,9 +13,21 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
   late CameraController _cameraController;
   late Future<void> _initializeControllerFuture;
 
+  late AudioPlayer _audioPlayer;
+
+  Future<void> _playAudio() async {
+    await _audioPlayer.play(AssetSource('audio/ring.mp3'), volume: 1.0);
+  }
+
+  Future<void> _stopAudio() async {
+    await _audioPlayer.stop();
+  }
+
   @override
   void initState() {
     super.initState();
+    _audioPlayer = AudioPlayer();
+    _playAudio();
     _initializeCamera();
   }
 
@@ -36,6 +49,8 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
   @override
   void dispose() {
     _cameraController.dispose();
+    _stopAudio();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -114,7 +129,8 @@ class _IncomingCallScreenState extends State<IncomingCallScreen> {
                               CallButton(
                                 icon: Icons.videocam,
                                 color: Colors.green,
-                                onPressed: () {
+                                onPressed: () async {
+                                  await _stopAudio();
                                   // Handle accept call
                                   Navigator.push(context,
                                       FadePageRoute(page: CallingScreen()));

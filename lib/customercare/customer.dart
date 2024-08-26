@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:fraudulent/betting/global/colors.dart';
@@ -223,73 +226,94 @@ class _ChatScreenState extends State<ChatScreen> {
   final FlutterTts _flutterTts = FlutterTts();
   final TextEditingController _messageController = TextEditingController();
 
-  List<Map<String, String>> messages = [
-    {
-      "sender": "Person",
-      "message": "Hello, Can you please help me with my loan Pre-Closure"
-    },
-    {"sender": "Banker", "message": "Yeah, Sure we will help you out."},
-    {
-      "sender": "Banker",
-      "message": "For loan Pre-Closure i will guide you a step by step process"
-    },
-    {
-      "sender": "Banker",
-      "message":
-          "Please make sure the call does not gets disconnected. Untill Pre-Closure process"
-    },
-    {"sender": "Person", "message": "Okay Sure. I will follow your guidance"},
-    {
-      "sender": "Banker",
-      "message":
-          "For Pre-Closure you need to pay the full amount to the Bank's main account\nHere is the account number\n765654543434"
-    },
-    {
-      "sender": "Banker",
-      "message":
-          "Click here to pay full amount of 6 lakhs, So that you will get 3 EMIs amount as a refund"
-    },
-    {
-      "sender": "Banker",
-      "message": "This refund is applicable only if you pay now."
-    },
-  ];
+  // List<Map<String, String>> messages = [
+  //   {
+  //     "sender": "Person",
+  //     "message": "Hello, Can you please help me with my loan Pre-Closure"
+  //   },
+  //   {"sender": "Banker", "message": "Yeah, Sure we will help you out."},
+  //   {
+  //     "sender": "Banker",
+  //     "message": "For loan Pre-Closure i will guide you a step by step process"
+  //   },
+  //   {
+  //     "sender": "Banker",
+  //     "message":
+  //         "Please make sure the call does not gets disconnected. Untill Pre-Closure process"
+  //   },
+  //   {"sender": "Person", "message": "Okay Sure. I will follow your guidance"},
+  //   {
+  //     "sender": "Banker",
+  //     "message":
+  //         "For Pre-Closure you need to pay the full amount to the Bank's main account\nHere is the account number\n765654543434"
+  //   },
+  //   {
+  //     "sender": "Banker",
+  //     "message":
+  //         "Click here to pay full amount of 6 lakhs, So that you will get 3 EMIs amount as a refund"
+  //   },
+  //   {
+  //     "sender": "Banker",
+  //     "message": "This refund is applicable only if you pay now."
+  //   },
+  // ];
 
   int _currentMessageIndex = 0;
+  Timer? time;
 
   @override
   void initState() {
     super.initState();
-    _speakAndDisplayNextMessage();
-  }
+    // _speakAndDisplayNextMessage();
+    _audioPlayer = AudioPlayer();
+    _playAudio();
+    _displayMessages();
 
-  void _speakAndDisplayNextMessage() async {
-    if (_currentMessageIndex < messages.length) {
-      String message = messages[_currentMessageIndex]['message']!;
-
-      // Display the current message
-      setState(() {
-        _currentMessageIndex++;
-      });
+    time = Timer.periodic(Duration(seconds: 1), (timer) {
       _scrollToBottom();
+      setState(() {});
+    });
 
-      // Delay to ensure message is fully displayed before speaking
-      await Future.delayed(Duration(milliseconds: 500));
-
-      // Speak the message and wait until it's finished
-      await _flutterTts.speak(message);
-      await _flutterTts.awaitSpeakCompletion(true);
-
-      // Display the next message after the current one is read completely
-      _speakAndDisplayNextMessage();
-    } else {
-      // Navigate to the final screen after all messages are completed
+    Future.delayed(Duration(seconds: 82), () {
+      // _flutterTts.stop();
+      // _scrollController.dispose();
+      // _messageController.dispose();
+      // _stopAudio();
+      // _audioPlayer.dispose();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => PaymentScreensss()),
       );
-    }
+    });
   }
+
+  // void _speakAndDisplayNextMessage() async {
+  //   if (_currentMessageIndex < messages.length) {
+  //     String message = messages[_currentMessageIndex]['message']!;
+
+  //     // Display the current message
+  //     setState(() {
+  //       _currentMessageIndex++;
+  //     });
+  //     _scrollToBottom();
+
+  //     // Delay to ensure message is fully displayed before speaking
+  //     await Future.delayed(Duration(milliseconds: 500));
+
+  //     // Speak the message and wait until it's finished
+  //     await _flutterTts.speak(message);
+  //     await _flutterTts.awaitSpeakCompletion(true);
+
+  //     // Display the next message after the current one is read completely
+  //     _speakAndDisplayNextMessage();
+  //   } else {
+  //     // Navigate to the final screen after all messages are completed
+  // Navigator.pushReplacement(
+  //   context,
+  //   MaterialPageRoute(builder: (context) => PaymentScreensss()),
+  // );
+  //   }
+  // }
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -306,7 +330,126 @@ class _ChatScreenState extends State<ChatScreen> {
     _flutterTts.stop();
     _scrollController.dispose();
     _messageController.dispose();
+    _stopAudio();
+    _audioPlayer.dispose();
     super.dispose();
+  }
+
+  final List<Map<String, dynamic>> _messages = [
+    {
+      "text": "Good morning, sir.",
+      "isSender": false,
+      "time": "09:00 AM",
+      "delay": 0
+    },
+    {
+      "text": "Good morning. Is it a DB customer care?",
+      "isSender": true,
+      "time": "09:01 AM",
+      "delay": 2
+    },
+    {
+      "text": "Yes, I'm Navia. And how may I help you, sir?",
+      "isSender": false,
+      "time": "09:02 AM",
+      "delay": 3
+    },
+    {
+      "text":
+          "Ma'am, I would like to clear my loan. What will be the next step for closing the loan?",
+      "isSender": true,
+      "time": "09:03 AM",
+      "delay": 5
+    },
+    {
+      "text":
+          "Definitely. Could you please share your loan account number, sir?",
+      "isSender": false,
+      "time": "09:04 AM",
+      "delay": 5
+    },
+    {
+      "text": "Ma'am, just a moment. My account number is 18254367891.",
+      "isSender": true,
+      "time": "09:05 AM",
+      "delay": 4
+    },
+    {
+      "text":
+          "Thank you, sir. Could you also please confirm your name, date of birth, and address?",
+      "isSender": false,
+      "time": "09:06 AM",
+      "delay": 11
+    },
+    {
+      "text":
+          "Ma'am, my name is Venkatesh Rao. Date of birth is 28-05-76, Sathyanarayanapuram, Vijayawada.",
+      "isSender": true,
+      "time": "09:07 AM",
+      "delay": 7
+    },
+    {
+      "text":
+          "Thank you for confirming the details, sir. Your overall due amount as on date is rupees 3,86,428. Are you sure you would like to clear your loan?",
+      "isSender": false,
+      "time": "09:08 AM",
+      "delay": 12
+    },
+    {"text": "Yes, ma'am.", "isSender": true, "time": "09:09 AM", "delay": 13},
+    {
+      "text": "I'll share a link where your payment can be made, sir.",
+      "isSender": false,
+      "time": "09:10 AM",
+      "delay": 2
+    },
+    {
+      "text":
+          "Ma'am, I received the link and I'm transferring the amount right now.",
+      "isSender": true,
+      "time": "09:11 AM",
+      "delay": 3
+    },
+    {
+      "text": "Sure, sir. Could you please share the screenshot?",
+      "isSender": false,
+      "time": "09:12 AM",
+      "delay": 5
+    },
+    {
+      "text": "Ma'am, I paid the amount and sending the screenshot.",
+      "isSender": true,
+      "time": "09:13 AM",
+      "delay": 4
+    },
+    {
+      "text":
+          "Thank you, sir. We received your screenshot and the loan amount will be updated within 2 to 3 working days. You'll receive a confirmation message from our end. Thank you, sir. Have a good day.",
+      "isSender": false,
+      "time": "09:14 AM",
+      "delay": 6
+    },
+  ];
+
+  List<Map<String, dynamic>> _visibleMessages = [];
+
+  Future<void> _displayMessages() async {
+    for (int i = 0; i < _messages.length; i++) {
+      await Future.delayed(
+          Duration(seconds: _messages[i]['delay'])); // Use the custom delay
+      setState(() {
+        _visibleMessages.add(_messages[i]);
+      });
+    }
+  }
+
+  late AudioPlayer _audioPlayer;
+
+  Future<void> _playAudio() async {
+    await _audioPlayer.play(AssetSource('audio/customercare.mp3'), volume: 1.0);
+  }
+
+  Future<void> _stopAudio() async {
+    await _audioPlayer.stop();
   }
 
   @override
@@ -324,29 +467,110 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              itemCount: _currentMessageIndex,
+              itemCount: _visibleMessages.length,
               itemBuilder: (context, index) {
-                bool isPerson = messages[index]['sender'] == 'Person';
-                return Align(
-                  alignment:
-                      isPerson ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                      color:
-                          isPerson ? Colors.lightBlue[100] : Colors.grey[300],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      messages[index]['message']!,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+                return ChatBubble(
+                  text: _visibleMessages[index]['text'],
+                  isSender: _visibleMessages[index]['isSender'],
+                  time: _visibleMessages[index]['time'],
                 );
               },
             ),
           ),
+          // child: Container(
+          //   child: SingleChildScrollView(
+          //     child: Column(
+          //       children: [
+          //         ChatBubble(
+          //           text: "Good morning, sir.",
+          //           isSender: false,
+          //           time: "09:00 AM",
+          //         ),
+          //         ChatBubble(
+          //           text: "Good morning. Is it a DB customer care?",
+          //           isSender: true,
+          //           time: "09:01 AM",
+          //         ),
+          //         ChatBubble(
+          //           text: "Yes, I'm Navia. And how may I help you, sir?",
+          //           isSender: false,
+          //           time: "09:02 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Ma'am, I would like to clear my loan. What will be the next step for closing the loan?",
+          //           isSender: true,
+          //           time: "09:03 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Definitely. Could you please share your loan account number, sir?",
+          //           isSender: false,
+          //           time: "09:04 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Ma'am, just a moment. My account number is 18254367891.",
+          //           isSender: true,
+          //           time: "09:05 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Thank you, sir. Could you also please confirm your name, date of birth, and address?",
+          //           isSender: false,
+          //           time: "09:06 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Ma'am, my name is Venkatesh Rao. Date of birth is 28-05-76, Sathyanarayanapuram, Vijayawada.",
+          //           isSender: true,
+          //           time: "09:07 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Thank you for confirming the details, sir. Your overall due amount as on date is rupees 3,86,428. Are you sure you would like to clear your loan?",
+          //           isSender: false,
+          //           time: "09:08 AM",
+          //         ),
+          //         ChatBubble(
+          //           text: "Yes, ma'am.",
+          //           isSender: true,
+          //           time: "09:09 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "I'll share a link where your payment can be made, sir.",
+          //           isSender: false,
+          //           time: "09:10 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Ma'am, I received the link and I'm transferring the amount right now.",
+          //           isSender: true,
+          //           time: "09:11 AM",
+          //         ),
+          //         ChatBubble(
+          //           text: "Sure, sir. Could you please share the screenshot?",
+          //           isSender: false,
+          //           time: "09:12 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Ma'am, I paid the amount and sending the screenshot.",
+          //           isSender: true,
+          //           time: "09:13 AM",
+          //         ),
+          //         ChatBubble(
+          //           text:
+          //               "Thank you, sir. We received your screenshot and the loan amount will be updated within 2 to 3 working days. You'll receive a confirmation message from our end. Thank you, sir. Have a good day.",
+          //           isSender: false,
+          //           time: "09:14 AM",
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+
           _buildBottomBar(),
         ],
       ),
@@ -437,16 +661,16 @@ class FinalScreen extends StatelessWidget {
                   onPrimary: Colors.white,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
-                'This transaction will reflect in your bank account in 2 working days and will mail you the clouser certificate. ',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.redAccent,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              // SizedBox(height: 20),
+              // Text(
+              //   'This transaction will reflect in your bank account in 2 working days and will mail you the clouser certificate. ',
+              //   style: TextStyle(
+              //     fontSize: 14,
+              //     fontWeight: FontWeight.bold,
+              //     color: Colors.redAccent,
+              //   ),
+              //   textAlign: TextAlign.center,
+              // ),
             ],
           ),
         ),
@@ -467,7 +691,7 @@ class FinalScreennnsss extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'After 3 days the customer care number wont be reach able\n\nthen the citizen will approch banks branch and will come to know that he was cheated by the fake tool free number which is obtained though google search.\n\nDo not trust all teh data you find on while Google Search',
+              'After 3 days this customer care number will not be reachable.\nThen the citizen will approach banks branch and will come to know that he was cheated by fake toll-free number which is obtained through Google Search.\nDo not trust all the data you find through Google Search',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -621,7 +845,7 @@ class _PaymentScreensssState extends State<PaymentScreensss> {
                       Razorpay razorpay = Razorpay();
                       var options = {
                         'key': 'rzp_test_1DP5mmOlF5G5ag',
-                        'amount': 1000 * 100,
+                        'amount': 386428 * 100,
                         'name': 'Acme Corp.',
                         'description': 'Fine T-Shirt',
                         'retry': {'enabled': true, 'max_count': 1},
@@ -642,7 +866,7 @@ class _PaymentScreensssState extends State<PaymentScreensss> {
                           handleExternalWalletSelected);
                       razorpay.open(options);
                     },
-                    child: Text('Pay 600000'),
+                    child: Text('Pay 3,86,428'),
                   ),
                 ],
               ),
@@ -666,6 +890,60 @@ class _PaymentScreensssState extends State<PaymentScreensss> {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+}
+
+class ChatBubble extends StatelessWidget {
+  final String text;
+  final bool isSender;
+  final String time;
+
+  ChatBubble({required this.text, required this.isSender, required this.time});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: isSender ? Colors.blueAccent : Colors.grey[300],
+          borderRadius: isSender
+              ? BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                  bottomLeft: Radius.circular(15),
+                )
+              : BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
+                ),
+        ),
+        child: Column(
+          crossAxisAlignment:
+              isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                color: isSender ? Colors.white : Colors.black,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              time,
+              style: TextStyle(
+                color: isSender ? Colors.white70 : Colors.black54,
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

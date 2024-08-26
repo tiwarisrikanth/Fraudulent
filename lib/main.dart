@@ -102,7 +102,7 @@ class _UserFormState extends State<UserForm> {
     request.body = json.encode({
       "soldierIdNo": _addressController.text,
       "citizenMobileNumber": _phoneController.text,
-      "citizenMobileName": _nameController.text
+      "citizenName": _nameController.text
     });
     request.headers.addAll(headers);
 

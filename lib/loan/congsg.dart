@@ -1,5 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:fraudulent/loan/loanPay.dart';
+import 'package:fraudulent/loan/new%20screen.dart';
 import 'package:fraudulent/partTime/global/packages.dart';
 
 class LoanApproved extends StatefulWidget {
@@ -62,6 +64,34 @@ class EMIInfo extends StatefulWidget {
 }
 
 class _EMIInfoState extends State<EMIInfo> {
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _playAudio();
+    Future.delayed(Duration(seconds: 117), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => NewTestScreenb()));
+    });
+  }
+
+  @override
+  void dispose() {
+    _stopAudio();
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _playAudio() async {
+    await _audioPlayer.play(AssetSource('audio/loan.mp3'), volume: 1.0);
+  }
+
+  Future<void> _stopAudio() async {
+    await _audioPlayer.stop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,23 +101,6 @@ class _EMIInfoState extends State<EMIInfo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Pay your loan amount 55000/- with interest",
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.green.shade700,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => PayBack()));
-                },
-                child: Text("Pay Back Loan")),
-            SizedBox(height: 20),
             Text(
               "This is how they use vulguar language to harass and recover their money.",
               style: GoogleFonts.poppins(
@@ -234,7 +247,16 @@ class _EMIInfoState extends State<EMIInfo> {
                   )
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 40),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NewTestScreenb()));
+                },
+                child: Text("Next"))
           ],
         ),
       ),

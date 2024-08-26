@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:fraudulent/partTime/ratig.dart';
 import 'package:fraudulent/warning.dart';
@@ -558,80 +559,80 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final List<Map<String, dynamic>> messages = [
-    {
-      'sender': 'Employer',
-      'text':
-          'You have done well. I would like to invite you to join our premium group.'
-    },
-    {'sender': 'Worker', 'text': 'What is the premium group about?'},
-    {
-      'sender': 'Employer',
-      'text':
-          'In the premium group, you will get access to exclusive projects and opportunities to earn more.'
-    },
-    {'sender': 'Worker', 'text': 'That sounds interesting! How can I join?'},
-    {
-      'sender': 'Employer',
-      'text':
-          'I will send you an invitation. Once you accept, you will be a part of the premium group and start earning more immediately.'
-    },
-    {'sender': 'Worker', 'text': 'What kind of projects will I be working on?'},
-    {
-      'sender': 'Employer',
-      'text':
-          'You will be working on high-priority projects that require advanced skills. These projects are often time-sensitive and highly rewarding.'
-    },
-    {
-      'sender': 'Worker',
-      'text': 'Will there be any additional training or resources provided?'
-    },
-    {
-      'sender': 'Employer',
-      'text':
-          'Yes, you will have access to exclusive training materials, webinars, and one-on-one mentoring sessions to help you excel.'
-    },
-    {'sender': 'Worker', 'text': 'How often are new projects assigned?'},
-    {
-      'sender': 'Employer',
-      'text':
-          'New projects are assigned on a weekly basis, depending on your availability and performance.'
-    },
-    {
-      'sender': 'Worker',
-      'text': 'What are the payment terms for these premium projects?'
-    },
-    {
-      'sender': 'Employer',
-      'text':
-          'Payments are made on a per-project basis, with higher rates than our regular projects. You can expect to earn significantly more.'
-    },
-    {
-      'sender': 'Worker',
-      'text':
-          'Is there any contract or commitment required to join the premium group?'
-    },
-    {
-      'sender': 'Employer',
-      'text':
-          'No long-term commitment is required. However, we do expect a high level of professionalism and dedication to the projects you undertake.'
-    },
-    {
-      'sender': 'Worker',
-      'text':
-          'Thank you for the information. I am excited to join the premium group and start working on these projects.'
-    },
-    {
-      'sender': 'Employer',
-      'text':
-          'Great! I will send over the invitation now. Welcome to the premium group!',
-    },
-    {
-      'sender': 'Employer',
-      'text': 'https://web.whatsapp.com/prmiumgroup',
-      'isLink': true
-    },
-  ];
+  // final List<Map<String, dynamic>> messages = [
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'You have done well. I would like to invite you to join our premium group.'
+  //   },
+  //   {'sender': 'Worker', 'text': 'What is the premium group about?'},
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'In the premium group, you will get access to exclusive projects and opportunities to earn more.'
+  //   },
+  //   {'sender': 'Worker', 'text': 'That sounds interesting! How can I join?'},
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'I will send you an invitation. Once you accept, you will be a part of the premium group and start earning more immediately.'
+  //   },
+  //   {'sender': 'Worker', 'text': 'What kind of projects will I be working on?'},
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'You will be working on high-priority projects that require advanced skills. These projects are often time-sensitive and highly rewarding.'
+  //   },
+  //   {
+  //     'sender': 'Worker',
+  //     'text': 'Will there be any additional training or resources provided?'
+  //   },
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'Yes, you will have access to exclusive training materials, webinars, and one-on-one mentoring sessions to help you excel.'
+  //   },
+  //   {'sender': 'Worker', 'text': 'How often are new projects assigned?'},
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'New projects are assigned on a weekly basis, depending on your availability and performance.'
+  //   },
+  //   {
+  //     'sender': 'Worker',
+  //     'text': 'What are the payment terms for these premium projects?'
+  //   },
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'Payments are made on a per-project basis, with higher rates than our regular projects. You can expect to earn significantly more.'
+  //   },
+  //   {
+  //     'sender': 'Worker',
+  //     'text':
+  //         'Is there any contract or commitment required to join the premium group?'
+  //   },
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'No long-term commitment is required. However, we do expect a high level of professionalism and dedication to the projects you undertake.'
+  //   },
+  //   {
+  //     'sender': 'Worker',
+  //     'text':
+  //         'Thank you for the information. I am excited to join the premium group and start working on these projects.'
+  //   },
+  //   {
+  //     'sender': 'Employer',
+  //     'text':
+  //         'Great! I will send over the invitation now. Welcome to the premium group!',
+  //   },
+  //   {
+  //     'sender': 'Employer',
+  //     'text': 'https://web.whatsapp.com/prmiumgroup',
+  //     'isLink': true
+  //   },
+  // ];
 
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -642,29 +643,33 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _startMessageDisplay();
-    _flutterTts.setCompletionHandler(() {
-      if (displayedMessages.length < messages.length) {
-        _startMessageDisplay();
-      } else {
-        setState(() {
-          _isSpeaking = false;
-        });
-      }
-    });
+    // _startMessageDisplay();
+    _audioPlayer1 = AudioPlayer();
+
+    playLocalAudio1();
+    _showMessagesWithDelay();
+    // _flutterTts.setCompletionHandler(() {
+    //   if (displayedMessages.length < messages.length) {
+    //     _startMessageDisplay();
+    //   } else {
+    //     setState(() {
+    //       _isSpeaking = false;
+    //     });
+    //   }
+    // });
   }
 
-  void _startMessageDisplay() {
-    Timer(Duration(seconds: 1), () {
-      if (displayedMessages.length < messages.length) {
-        setState(() {
-          displayedMessages.add(messages[displayedMessages.length]);
-        });
-        _scrollToBottom();
-        _speakCurrentMessage();
-      }
-    });
-  }
+  // void _startMessageDisplay() {
+  //   Timer(Duration(seconds: 1), () {
+  //     if (displayedMessages.length < messages.length) {
+  //       setState(() {
+  //         displayedMessages.add(messages[displayedMessages.length]);
+  //       });
+
+  //       _speakCurrentMessage();
+  //     }
+  //   });
+  // }
 
   void _speakCurrentMessage() async {
     if (displayedMessages.isNotEmpty) {
@@ -683,20 +688,20 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  void showProcessingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return ProcessingDialog();
-      },
-    );
+  // void showProcessingDialog(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (BuildContext context) {
+  //       return ProcessingDialog();
+  //     },
+  //   );
 
-    Timer(Duration(seconds: 3), () {
-      Navigator.pop(context); // Close the dialog
-      showSuccessDialog(context);
-    });
-  }
+  //   Timer(Duration(seconds: 3), () {
+  //     Navigator.pop(context); // Close the dialog
+  //     showSuccessDialog(context);
+  //   });
+  // }
 
   void showSuccessDialog(BuildContext context) {
     showDialog(
@@ -738,6 +743,130 @@ class _ChatScreenState extends State<ChatScreen> {
         return BottomSheetContent();
       },
     );
+  }
+
+  List<Map<String, dynamic>> messages = [];
+
+  List<Map<String, dynamic>> chatMessages = [
+    {
+      "text": "Hello, sir Is this an MNC company?",
+      "isSender": true,
+      "delay": 0
+    },
+    {
+      "text": "Yes. Who are you and what can I do for you?",
+      "isSender": false,
+      "delay": 4
+    },
+    {
+      "text":
+          "I'm Aruna, calling from Vijayawada. I completed my MBA and I'm willing to work in your company, sir.",
+      "isSender": true,
+      "delay": 6
+    },
+    {"text": "Ok, Aruna How old are you?", "isSender": false, "delay": 5},
+    {"text": "I'm 25 years old.", "isSender": true, "delay": 2},
+    {
+      "text":
+          "Fine. There will be some small task in this job. And for each task you will be paid an amount of rupees 50.",
+      "isSender": false,
+      "delay": 3
+    },
+    {"text": "Ok, sir. What are those tasks?", "isSender": true, "delay": 9},
+    {
+      "text":
+          "The tasks include giving subscriptions, likes, and ratings to hotels, dress materials, and so on.",
+      "isSender": false,
+      "delay": 3
+    },
+    {"text": "Oh, that's great.", "isSender": true, "delay": 12},
+    {
+      "text": "I will send you a link regarding these tasks.",
+      "isSender": false,
+      "delay": 1
+    },
+    {"text": "OK, sir.", "isSender": true, "delay": 2},
+    {
+      "text": "Sir, I completed my first three tasks.",
+      "isSender": true,
+      "delay": 6
+    },
+    {
+      "text":
+          "Send your bank account details and other details to credit your amount.",
+      "isSender": false,
+      "delay": 3
+    },
+    {
+      "text":
+          "Sure, sir. I'll send my account details through WhatsApp or SMS.",
+      "isSender": true,
+      "delay": 5
+    },
+    {
+      "text": "Sir, I received 150 rupees and when will be the next task?",
+      "isSender": true,
+      "delay": 6
+    },
+    {
+      "text":
+          "Fine. 4th and 5th task will be free tasks and the sixth task will be a paid task. You have to pay rupees 1000 to the account number 34865942381 IFSC code nsdL0000087 and you will receive an amount of 1300.",
+      "isSender": false,
+      "delay": 4
+    },
+    {"text": "Wow, Sir, I received ₹1300.", "isSender": true, "delay": 5},
+    {
+      "text":
+          "Ok, now you became our premium member. Now you have to create a wallet on our website. I will provide you a link. Initially, you have to pay rupees 3000 per task from here onwards.",
+      "isSender": false,
+      "delay": 24
+    },
+    {"text": "OK sir, Sure I will do so.", "isSender": true, "delay": 14},
+    {
+      "text":
+          "Post completion of this task. The amount will be displayed in your wallet. Further, you can continue with your desired amounts.",
+      "isSender": false,
+      "delay": 3
+    },
+    {
+      "text":
+          "Sir, I received ₹3600 in my wallet and I'm sending ₹10,000 to proceed further.",
+      "isSender": true,
+      "delay": 9
+    },
+    {"text": "OK, You can continue.", "isSender": false, "delay": 10},
+    {
+      "text":
+          "Sir, till now I paid 15 lakhs and wallet is disclosing 29,60,000. But when I tried to withdraw the amount I couldn't do so, what could be the reason, sir?",
+      "isSender": true,
+      "delay": 5
+    },
+  ];
+
+  void _showMessagesWithDelay() async {
+    for (int i = 0; i < chatMessages.length; i++) {
+      await Future.delayed(Duration(seconds: chatMessages[i]['delay']));
+      setState(() {
+        messages.add(chatMessages[i]);
+      });
+    }
+  }
+
+  late AudioPlayer _audioPlayer1;
+
+  Future<void> playLocalAudio1() async {
+    try {
+      await _audioPlayer1.play(AssetSource('audio/work.mp3'),
+          mode: PlayerMode.mediaPlayer);
+    } catch (e) {
+      print('Error playing audio 1: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer1.dispose();
+    super.dispose();
   }
 
   @override
@@ -784,70 +913,79 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: ListView.builder(
-                controller: _scrollController,
-                itemCount: displayedMessages.length,
+                itemCount: messages.length,
                 itemBuilder: (context, index) {
-                  final message = displayedMessages[index];
-                  final isEmployer = message['sender'] == 'Employer';
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: Align(
-                      alignment: isEmployer
-                          ? Alignment.centerLeft
-                          : Alignment.centerRight,
-                      child: Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color:
-                              isEmployer ? Colors.teal[100] : Colors.green[100],
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                            bottomLeft: isEmployer
-                                ? Radius.circular(0)
-                                : Radius.circular(10),
-                            bottomRight: isEmployer
-                                ? Radius.circular(10)
-                                : Radius.circular(0),
-                          ),
-                        ),
-                        child: message['isLink'] == true
-                            ? GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text('Information'),
-                                        content: Text(
-                                            'To Join this group you will have to pay 25000/- upfront'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              showProcessingDialog(context);
-                                            },
-                                            child: Text('OK'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Text(
-                                  message['text'] ?? '',
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              )
-                            : Text(message['text'] ?? ''),
-                      ),
-                    ),
+                  return ChatBubble(
+                    text: messages[index]['text'],
+                    isSender: messages[index]['isSender'],
                   );
                 },
               ),
+              // child: ListView.builder(
+              //   controller: _scrollController,
+              //   itemCount: displayedMessages.length,
+              //   itemBuilder: (context, index) {
+              //     final message = displayedMessages[index];
+              //     final isEmployer = message['sender'] == 'Employer';
+              //     return Padding(
+              //       padding:
+              //           const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              //       child: Align(
+              //         alignment: isEmployer
+              //             ? Alignment.centerLeft
+              //             : Alignment.centerRight,
+              //         child: Container(
+              //           padding: EdgeInsets.all(12),
+              //           decoration: BoxDecoration(
+              //             color:
+              //                 isEmployer ? Colors.teal[100] : Colors.green[100],
+              //             borderRadius: BorderRadius.only(
+              //               topLeft: Radius.circular(10),
+              //               topRight: Radius.circular(10),
+              //               bottomLeft: isEmployer
+              //                   ? Radius.circular(0)
+              //                   : Radius.circular(10),
+              //               bottomRight: isEmployer
+              //                   ? Radius.circular(10)
+              //                   : Radius.circular(0),
+              //             ),
+              //           ),
+              //           child: message['isLink'] == true
+              //               ? GestureDetector(
+              //                   onTap: () {
+              //                     showDialog(
+              //                       context: context,
+              //                       builder: (BuildContext context) {
+              //                         return AlertDialog(
+              //                           title: Text('Information'),
+              //                           content: Text(
+              //                               'To Join this group you will have to pay 25000/- upfront'),
+              //                           actions: [
+              //                             TextButton(
+              //                               onPressed: () {
+              //                                 showProcessingDialog(context);
+              //                               },
+              //                               child: Text('OK'),
+              //                             ),
+              //                           ],
+              //                         );
+              //                       },
+              //                     );
+              //                   },
+              //                   child: Text(
+              //                     message['text'] ?? '',
+              //                     style: TextStyle(
+              //                       color: Colors.blue,
+              //                       decoration: TextDecoration.underline,
+              //                     ),
+              //                   ),
+              //                 )
+              //               : Text(message['text'] ?? ''),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -993,6 +1131,42 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
             child: Text('End Simulation'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ChatBubble extends StatelessWidget {
+  final String text;
+  final bool isSender;
+
+  ChatBubble({required this.text, required this.isSender});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.all(10),
+        constraints:
+            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
+        decoration: BoxDecoration(
+          color: isSender ? Colors.blueAccent : Colors.grey[300],
+          borderRadius: BorderRadius.only(
+            topLeft: isSender ? Radius.circular(15) : Radius.circular(0),
+            topRight: isSender ? Radius.circular(0) : Radius.circular(15),
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          ),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: isSender ? Colors.white : Colors.black,
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }

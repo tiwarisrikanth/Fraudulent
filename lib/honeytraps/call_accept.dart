@@ -299,12 +299,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       _controller.play();
       _controller.setLooping(true);
     });
-    // perio = Timer.periodic(Duration(seconds: 6), (timer) {
-    //   _initializeVideoPlayerFuture = _controller.initialize().then((_) {
-    //     _controller.play();
-    //     _controller.setLooping(true);
-    //   });
-    // });
+    perio = Timer.periodic(Duration(seconds: 8), (timer) {
+      _initializeVideoPlayerFuture = _controller.initialize().then((_) {
+        _controller.play();
+        _controller.setLooping(true);
+      });
+    });
   }
 
   @override

