@@ -118,8 +118,8 @@ class _GoogleSearchBodyState extends State<GoogleSearchBody> {
               onPressed: _search,
               child: Text('Google Search'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey[200],
-                onPrimary: Colors.black,
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.grey[200],
               ),
             ),
             SizedBox(width: 10),
@@ -129,8 +129,8 @@ class _GoogleSearchBodyState extends State<GoogleSearchBody> {
               },
               child: Text("I'm Feeling Lucky"),
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey[200],
-                onPrimary: Colors.black,
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.grey[200],
               ),
             ),
           ],
@@ -657,8 +657,8 @@ class FinalScreen extends StatelessWidget {
                 },
                 child: Text('Next'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blueGrey[900],
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blueGrey[900],
                 ),
               ),
               // SizedBox(height: 20),

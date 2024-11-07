@@ -153,7 +153,7 @@ void showBottomSheetSocial(BuildContext context) {
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.red, // Background color
+                backgroundColor: Colors.red, // Background color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

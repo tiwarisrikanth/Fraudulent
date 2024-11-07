@@ -549,7 +549,7 @@ class UserProfile extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       side: BorderSide(color: Colors.grey[300]!),
                       elevation: 0,
                       padding: EdgeInsets.symmetric(vertical: 12),
@@ -565,7 +565,7 @@ class UserProfile extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
+                      backgroundColor: Colors.blue,
                       elevation: 0,
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),

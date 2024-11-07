@@ -23,7 +23,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
 //         useMaterial3: true,
 //       ),
-//       home: FraudTypesGrid(),
+//       home:
 //     );
 //   }
 // }
@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const UserForm(),
+      home: FraudTypesGrid(),
+      // const UserForm(),
     );
   }
 }

@@ -26,8 +26,8 @@ class _CertificateScreenState extends State<CertificateScreen> {
     super.initState();
   }
 
-  String? name = "";
-  String? reff = "";
+  String? name = "Test User";
+  String? reff = "sahv4567890";
   DateTime date = DateTime.now();
 
   Future<void> _saveUserDetails() async {
