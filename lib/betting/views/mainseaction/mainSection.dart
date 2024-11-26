@@ -8,7 +8,8 @@ import 'package:fraudulent/betting//views/mainseaction/drawer/settings.dart';
 import 'package:fraudulent/betting//views/mainseaction/pages/funds.dart';
 import 'package:fraudulent/betting//views/mainseaction/pages/home.dart';
 import 'package:fraudulent/betting//views/mainseaction/pages/passBook.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import '../../global/colors.dart';
 import 'drawer/gameRates.dart';

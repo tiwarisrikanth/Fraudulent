@@ -391,18 +391,18 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
   }
 
   void _navigateToScreen(int index) {
-    if (index != 14 && index != 15) {
-      if (clickedTiles.contains(index)) {
-        // If the tile is already clicked, do not navigate again
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text('${fraudTypes[index]['name']} already viewed!')),
-        );
-        return;
-      }
+    // if (index != 14 && index != 15) {
+    //   if (clickedTiles.contains(index)) {
+    //     // If the tile is already clicked, do not navigate again
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(
+    //           content: Text('${fraudTypes[index]['name']} already viewed!')),
+    //     );
+    //     return;
+    //   }
 
-      _saveClickedTile(index);
-    }
+    //   _saveClickedTile(index);
+    // }
 
     switch (index) {
       case 0: // Digital Arrest
@@ -554,37 +554,37 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
         elevation: 0,
         actions: [
           // if (clickedTiles.length >= 14)
-          //   InkWell(
-          //     onTap: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) => CertificateScreen(),
-          //         ),
-          //       );
-          //     },
-          //     child: Container(
-          //       height: 40,
-          //       decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(90),
-          //           color: Colors.purple.shade800.withOpacity(0.6)),
-          //       child: Padding(
-          //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          //         child: Center(
-          //             child: Text(
-          //           "View Certificate",
-          //           style: GoogleFonts.poppins(
-          //             color: white,
-          //             fontSize: 13,
-          //             fontWeight: FontWeight.w500,
-          //           ),
-          //         )),
-          //       ),
-          //     ),
-          //   ),
-          // SizedBox(
-          //   width: 10,
-          // )
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CertificateScreen(),
+                ),
+              );
+            },
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(90),
+                  color: Colors.purple.shade800.withOpacity(0.6)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Center(
+                    child: Text(
+                  "View Certificate",
+                  style: GoogleFonts.poppins(
+                    color: white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          )
         ],
       ),
       body: Stack(
