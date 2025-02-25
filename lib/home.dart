@@ -548,44 +548,44 @@ class _FraudTypesGridState extends State<FraudTypesGrid>
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: clickedTiles.length >= 14 ? false : true,
-        title: Text('Be a Cyber Citizen',
+        title: Text('CYBER SURAKSHA',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
         backgroundColor: Colors.white,
         elevation: 0,
-        actions: [
-          // if (clickedTiles.length >= 14)
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CertificateScreen(),
-                ),
-              );
-            },
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(90),
-                  color: Colors.purple.shade800.withOpacity(0.6)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                    child: Text(
-                  "View Certificate",
-                  style: GoogleFonts.poppins(
-                    color: white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          )
-        ],
+        // actions: [
+        //   // if (clickedTiles.length >= 14)
+        //   InkWell(
+        //     onTap: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => CertificateScreen(),
+        //         ),
+        //       );
+        //     },
+        //     child: Container(
+        //       height: 40,
+        //       decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(90),
+        //           color: Colors.purple.shade800.withOpacity(0.6)),
+        //       child: Padding(
+        //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        //         child: Center(
+        //             child: Text(
+        //           "View Certificate",
+        //           style: GoogleFonts.poppins(
+        //             color: white,
+        //             fontSize: 13,
+        //             fontWeight: FontWeight.w500,
+        //           ),
+        //         )),
+        //       ),
+        //     ),
+        //   ),
+        //   SizedBox(
+        //     width: 10,
+        //   )
+        // ],
       ),
       body: Stack(
         children: [

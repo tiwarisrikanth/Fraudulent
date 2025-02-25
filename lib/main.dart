@@ -39,13 +39,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Cyber Citizen',
+      title: 'CYBER SURAKSHA',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const UserForm(),
-      // FraudTypesGrid(),
+      // home: const UserForm(),
+      home: FraudTypesGrid(),
       // const UserForm(),
     );
   }
